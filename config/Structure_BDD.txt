@@ -1,0 +1,22 @@
+STRUCTURE DE LA BASE DE DONNEES
+
+
+TITRE
+-idTitre: int PRIMARY 
+-nom: varchar(200)
+-auteur:varchar(200)
+-date_debut: date
+-date_fin: date
+
+AVIS
+-idAvis: int PRIMARY
+-idUser: int FOREIGN KEY
+-idTitre: int FOREIGN KEY
+-note: int
+-commentaire: varchar(500)
+
+USER
+-idUser: int
+-pseudo: varchar(50)
+-mdp: varchar(50)
+-droits: int
