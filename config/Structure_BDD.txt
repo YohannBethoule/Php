@@ -5,6 +5,7 @@ TITRE
 -idTitre: int PRIMARY 
 -nom: varchar(200)
 -auteur:varchar(200)
+-idAlbum: int
 -date_debut: date
 -date_fin: date
 
@@ -20,3 +21,10 @@ USER
 -pseudo: varchar(50)
 -mdp: varchar(50)
 -droits: int
+
+ALBUM
+-idAlbum: int
+-nomAlbum: varchar(200)
+-parution: int
+-description: varchar(2000)
+-couverture: varchar(200);
