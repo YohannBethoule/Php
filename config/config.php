@@ -18,8 +18,8 @@ $mdp="";
 
 //Vues
 
-$vues['erreur']='Vues/404.html';
-$vues['vuephpindex']='Vues/index.html';
+$vues['erreur']='Vues/404.php';
+$vues['vueindex']='Vues/index.php';
 
 
 ?>

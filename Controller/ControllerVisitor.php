@@ -10,11 +10,12 @@
 
 class ControllerVisitor
 {
+
     function __construct()
     {
         session_start();
 
-        $dVueEreur = array ();
+        $dVueErreur = array ();
 
         try {
 
@@ -42,20 +43,20 @@ class ControllerVisitor
                     break;
 
                 default:
-                    $dVueEreur = "Erreur d'appel php.";
-                    require($rep . $vues['vuephp1']);
+                    $dVueErreur = "Erreur d'appel php.";
+                    require($rep . $vues['erreur']);
             }
         }
         catch (PDOException $e)
         {
             //si erreur BD, pas le cas ici
-            $dVueEreur[] =	"Erreur inattendue!!! ";
+            $dVueErreur[] =	"Erreur inattendue!!! ";
             require ($rep.$vues['erreur']);
         }
 
         catch (Exception $e2)
 	    {
-            $dVueEreur[] =	"Erreur inattendue!!! ";
+            $dVueErreur[] =	"Erreur inattendue!!! ";
             require ($rep.$vues['erreur']);
         }
 
@@ -67,28 +68,32 @@ class ControllerVisitor
         global $rep,$vues;
 
         $dVue = array (
-            'nom' => "",
-            'age' => 0,
+            //Initialise tout à zéro.
         );
-        require ($rep.$vues['vuephpindex']);
+        require ($rep.$vues['vueindex']);
     }
 
     function seConnecter(){
         global $rep,$vues;
         $login=$_POST['login'];
         $password=$_POST['password'];
-        Validation::val_form($login,$password,$dVueEreur);
+        \Controller\Validation::validUser($login,$password,$dVueErreur);
+        //Instancier Modele et appeler sa méthode de connexion.
+
     }
 
     function consulterTitre(){
         global $rep,$vues;
+
     }
 
     function lireTitre(){
         global $rep,$vues;
+
     }
 
     function afficherCommentaires(){
         global $rep,$vues;
+
     }
 }

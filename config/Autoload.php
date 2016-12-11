@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: samuel
- * Date: 11/12/2016
- * Time: 11:43
- */
 class Autoload
 {
     private static $_instance = null;
@@ -40,7 +34,7 @@ class Autoload
     {
         global $rep;
         $filename = $class.'.php';
-        $dir =array('Modele/','./','config/','Controller/');
+        $dir =array('Modele/','./','config/','Controller/','DAL/');
         foreach ($dir as $d){
             $file=$rep.$d.$filename;
             //echo $file;
@@ -49,6 +43,8 @@ class Autoload
                 include $file;
             }
         }
-
     }
 }
+
+
+?>
