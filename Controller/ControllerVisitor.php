@@ -13,8 +13,6 @@ class ControllerVisitor
 
     function __construct()
     {
-        session_start();
-
         $dVueErreur = array ();
 
         try {
@@ -78,7 +76,7 @@ class ControllerVisitor
         $login=$_POST['login'];
         $password=$_POST['password'];
         \Controller\Validation::validUser($login,$password,$dVueErreur);
-        //Instancier Modele et appeler sa méthode de connexion.
+        //Instancier Model et appeler sa méthode de connexion.
 
     }
 

@@ -13,4 +13,13 @@ class Album
     private $_int;
     private $_description;
     private $_couverture;
+
+    function __construct($id,$nom,$num,$desc,$couv)
+    {
+        $this->_idAlbum=$id;
+        $this->_nomAlbum=$nom;
+        $this->_int=$num;
+        $this->_description=$desc;
+        $this->_couverture=$couv;
+    }
 }

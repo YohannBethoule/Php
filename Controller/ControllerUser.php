@@ -11,8 +11,6 @@ class ControllerUser extends ControllerVisitor
 
     function __construct()
     {
-        session_start();
-
         $dVueEreur = array ();
 
         try {

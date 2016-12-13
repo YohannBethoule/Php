@@ -11,7 +11,6 @@ class ControllerAdmin extends ControllerUser
     function __construct()
     {
         //on démarre ou reprend la session
-        session_start();
 
         try{
             $action=$_REQUEST['action'];

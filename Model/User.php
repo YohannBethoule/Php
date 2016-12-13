@@ -11,5 +11,11 @@
 class User
 {
     private $_login;
-    private $_mdpp;
+    private $_mdp;
+
+    function __construct($login, $password)
+    {
+        $this->_login=$login;
+        $this->_mdp=$password;
+    }
 }

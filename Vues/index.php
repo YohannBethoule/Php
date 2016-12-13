@@ -36,6 +36,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <?php require ('\templates\header.php');
             require('\templates\navbar.php');
             require('\templates\footer.php');
+            new FrontController();
         ?>
 
    </section>
