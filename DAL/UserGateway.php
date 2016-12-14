@@ -14,53 +14,36 @@ class UserGateway
         $this->con=$con;
     }
 
-    public function insert($id, $titre, $user, $note, $commentaire){
-        $query='INSERT INTO Avis VALUES(:id,:titre,:user,:note,:commentaire)';
+    public function insert($pseudo, $mdp){
+        $query='INSERT INTO User VALUES(:pseudo, :mdp)';
         $this->con->executeQuery($query, array(
-            ':id'=>array($id,PDO::PARAM_STR),
-            ':titre'=>array($titre,PDO::PARAM_STR),
-            ':user'=>array($user,PDO::PARAM_STR),
-            ':note'=>array($note,PDO::PARAM_STR),
-            ':commentaire'=>array($commentaire, 2)
+            ':login'=>array($pseudo, 2),
+            ':mdp'=>array($mdp, 2)
         ));
     }
 
-    public function delete($id){
-        $query= 'DELETE FROM Avis WHERE idAvis=:id';
+    public function update($pseudo, $mdp){
+        $query = 'UPDATE User SET mdp=:mdp WHERE pseudo=:pseudo';
         $this->con->executeQuery($query, array(
-            ':id' => array($id, PDO::PARAM_INT)
+            ':pseudo' => array($pseudo, PDO::PARAM_INT),
+            ':mdp' => array($mdp, PDO::PARAM_STR),
+        ));
+
+    }
+
+    public function delete($pseudo){
+        $query= 'DELETE FROM User WHERE pseudo=:pseudo';
+        $this->con->executeQuery($query, array(
+            ':pseudo' => array($pseudo, PDO::PARAM_INT)
         ));
     }
 
-    public function search($id){
-        $query='SELECT * FROM Avis WHERE idAvis=:id';
+    public function search($pseudo){
+        $query='SELECT * FROM User WHERE pseudo=:pseudo';
         $this->con->executeQuery($query, array(
-            ':id'=>array($id, PDO::PARAM_INT)
+            ':pseudo'=>array($pseudo, PDO::PARAM_INT)
         ));
-        $avis=$this->con->getResults();
-        return new Avis($avis['idAvis'], $avis['idUser'], $avis['idTitre'], $avis['note'], $avis['commentaire']);
+        $user=$this->con->getResults();
+        return new User($user['pseudo'], $user['mdp']);
     }
-
-    public function searchByUser($user){
-        $query='SELECT * FROM Avis WHERE idUser=:user';
-        $this->con->executeQuery($query, array(
-            ':user'=>array($user, PDO::PARAM_STR)
-        ));
-        $results=$this->con->getResults();
-        foreach ($results as $row){
-            $tab_avis[]=new Avis($row['idAvis'], $row['idUser'], $row['idTitre'], $row['note'], $row['commentaire']);
-        }
-        return $tab_avis;
-    }
-
-    public function searchByTitre($idTitre){
-        $query='SELECT * FROM Avis WHERE idTitre=:idTitre';
-        $this->con->executeQuery($query, array(
-            ':idTitre'=>array($idTitre, PDO::PARAM_STR)
-        ));
-        $results=$this->con->getResults();
-        foreach ($results as $row){
-            $tab_avis[]=new Avis($row['idAvis'], $row['idUser'], $row['idTitre'], $row['note'], $row['commentaire']);
-        }
-        return $tab_avis;
 }

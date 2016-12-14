@@ -38,17 +38,17 @@ class AvisGateway
             ':id'=>array($id, PDO::PARAM_INT)
         ));
         $avis=$this->con->getResults();
-        return new Avis($avis['idAvis'], $avis['idUser'], $avis['idTitre'], $avis['note'], $avis['commentaire']);
+        return new Avis($avis['idAvis'], $avis['user'], $avis['idTitre'], $avis['note'], $avis['commentaire']);
     }
 
     public function searchByUser($user){
-        $query='SELECT * FROM Avis WHERE idUser=:user';
+        $query='SELECT * FROM Avis WHERE user=:user';
         $this->con->executeQuery($query, array(
             ':user'=>array($user, PDO::PARAM_STR)
         ));
         $results=$this->con->getResults();
         foreach ($results as $row){
-            $tab_avis[]=new Avis($row['idAvis'], $row['idUser'], $row['idTitre'], $row['note'], $row['commentaire']);
+            $tab_avis[]=new Avis($row['idAvis'], $row['user'], $row['idTitre'], $row['note'], $row['commentaire']);
         }
         return $tab_avis;
     }
@@ -60,7 +60,7 @@ class AvisGateway
         ));
         $results=$this->con->getResults();
         foreach ($results as $row){
-            $tab_avis[]=new Avis($row['idAvis'], $row['idUser'], $row['idTitre'], $row['note'], $row['commentaire']);
+            $tab_avis[]=new Avis($row['idAvis'], $row['user'], $row['idTitre'], $row['note'], $row['commentaire']);
         }
         return $tab_avis;
     }

@@ -11,16 +11,14 @@ TITRE
 
 AVIS
 -idAvis: int PRIMARY
--idUser: int FOREIGN KEY
+-user: int FOREIGN KEY
 -idTitre: int FOREIGN KEY
 -note: int
 -commentaire: varchar(500)
 
 USER
--idUser: int
 -pseudo: varchar(50)
 -mdp: varchar(50)
--droits: int
 
 ALBUM
 -idAlbum: int
