@@ -8,9 +8,7 @@
 
 ?>
 
-<!-- left side start-->
 <div class="left-side sticky-left-side">
-
     <!--logo and iconic logo start-->
     <div class="logo">
         <h1><a href="index.php">Mosaic<span>c</span></a></h1>
@@ -31,7 +29,4 @@
     </div>
 </div>
 
-<!-- /w3l-agile -->
 
-<!-- /w3l-agile -->
-<!-- left side end-->

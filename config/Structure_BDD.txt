@@ -23,7 +23,7 @@ USER
 ALBUM
 -idAlbum: int
 -nomAlbum: varchar(200)
--artiste: int
+-artiste: varchar(200)
 -parution: int
 -description: varchar(2000)
 -couverture: varchar(200);
