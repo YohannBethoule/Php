@@ -8,6 +8,7 @@
  */
 class Avis
 {
+    private $_idAvis;
     private $_user;
     private $_titre;
     private $_note;

@@ -10,15 +10,17 @@ class Album
 {
     private $_idAlbum;
     private $_nomAlbum;
-    private $_int;
+    private $_artiste;
+    private $_parution;
     private $_description;
     private $_couverture;
 
-    function __construct($id,$nom,$num,$desc,$couv)
+    function __construct($id,$nomAlbum, $artiste, $parution,$desc,$couv)
     {
         $this->_idAlbum=$id;
-        $this->_nomAlbum=$nom;
-        $this->_int=$num;
+        $this->_nomAlbum=$nomAlbum;
+        $this->_artiste=$artiste;
+        $this->_parution=$parution;
         $this->_description=$desc;
         $this->_couverture=$couv;
     }

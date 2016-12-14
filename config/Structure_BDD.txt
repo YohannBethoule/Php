@@ -3,8 +3,8 @@ STRUCTURE DE LA BASE DE DONNEES
 
 TITRE
 -idTitre: int PRIMARY 
--nom: varchar(200)
--auteur:varchar(200)
+-nomTitre: varchar(200)
+-artiste:varchar(200)
 -idAlbum: int
 -date_debut: date
 -date_fin: date
@@ -25,6 +25,7 @@ USER
 ALBUM
 -idAlbum: int
 -nomAlbum: varchar(200)
+-artiste: int
 -parution: int
 -description: varchar(2000)
 -couverture: varchar(200);
