@@ -32,15 +32,30 @@ require_once('\templates\head.php');
     ?>
 
 
-    <div class="browse">
-        <?php
-            foreach ($res as $ligne){
-                echo "<p>Titre : ".$ligne['nomTitre']." / ";
-                echo "Artiste : ".$ligne['artiste']." / ";
-                echo "Album : ".$ligne['nomAlbum']." / ";
-                echo "Disponible depuis le ".$ligne['date_debut']." jusqu'au ".$ligne['date_fin']."</p><br>";
-            }
-        ?>
+    <div class="table table-responsive  pricing-table">
+        <table>
+            <tr>
+                <th>Nom</th>
+                <th>Couverture</th>
+                <th>Période de mise en ligne</th>
+                <th>Nb favorables</th>
+                <th>Nb indifférents</th>
+                <th>Nb défavorables</th>
+                <th>+ d'Infos</th>
+            </tr>
+            <?php
+                foreach($res as $row){
+                    echo "<tr>";
+                    echo "<th>".$row['titre']."</th>";
+                    echo "<th><img src=".$row['couverture']."></th>";
+                    echo "<th>".$row['date_debut']."--".$row['date_fin']."</th>";
+                    echo "<th>".$row['avisF']."</th>";
+                    echo "<th>".$row['avisI']."</th>";
+                    echo "<th>".$row['avisD']."</th>";
+                    echo "</tr>";
+                }
+            ?>
+        </table>
         <!-- A remplacer par du traitement php.
         <div class="tittle-head two">
             <h3 class="tittle">New Releses <span class="new">New</span></h3>

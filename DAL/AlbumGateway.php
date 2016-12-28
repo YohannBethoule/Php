@@ -53,7 +53,7 @@ class AlbumGateway
             ':id'=>array($id, PDO::PARAM_INT)
         ));
         $album=$this->con->getResults();
-        return new Album($album['idAlbum'], $album['nomAlbum'], $album['artiste'], $album['parution'], $album['description'], $album['couverture']);
+        return $album;
     }
 
     public function searchByName($nom){
@@ -65,7 +65,7 @@ class AlbumGateway
         foreach ($results as $row){
             $tab_album[]=new Album($row['nom'], $row['artiste'], $row['album'], $row['date_debut'], $row['date_fin']);
         }
-        return $tab_album;
+        return $results;
     }
 
     public function searchByArtiste($artiste){
@@ -77,7 +77,17 @@ class AlbumGateway
         foreach ($results as $row){
             $tab_album[]=new Album($row['idAlbum'], $row['nomAlbum'], $row['artiste'], $row['parution'], $row['description'], $row['couverture']);
         }
-        return $tab_album;
+        return $results;
+    }
+
+    public function searchCouvByName($nomAlbum){
+        $query='SELECT couverture FROM Album WHERE nomAlbum=:nomAlbum';
+        $this->con->executeQuery($query, array(
+            ':nomAlbum'=>array($nomAlbum, PDO::PARAM_STR)
+        ));
+        $results=$this->con->getResults();
+        $results=$results[0][0];
+        return $results;
     }
 
 }

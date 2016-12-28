@@ -13,7 +13,7 @@ AVIS
 -idAvis: int PRIMARY
 -user: varchar50 FOREIGN KEY
 -idTitre: int FOREIGN KEY
--note: int
+-note: ENUM('favorable','indifférent','défavorable')
 -commentaire: varchar(500)
 
 USER

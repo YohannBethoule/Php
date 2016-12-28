@@ -72,7 +72,11 @@ class ControllerVisitor
     function consulterTitres(){
         global $rep,$vues;
         try{
-            $res=ModelVisitor::listeTitres();
+            $res=ModelVisitor::TousLesTitres();
+            usort($res,function($a,$b){
+                if($a['avisF']==$b['avisF']) return 0;
+                return $a['avisF'] < $b['avisF']?1:-1;
+            });
             require_once($vues['recherche']);
         }catch (Exception $e){
             $dVueErreur[]=$e->getMessage();

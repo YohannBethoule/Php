@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 28 Décembre 2016 à 11:04
+-- Généré le :  Mer 28 Décembre 2016 à 16:36
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -35,6 +35,13 @@ CREATE TABLE `album` (
   `couverture` varchar(200) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Contenu de la table `album`
+--
+
+INSERT INTO `album` (`idAlbum`, `nomAlbum`, `artiste`, `parution`, `description`, `couverture`) VALUES
+(1, '24K Magic', 'Bruno Mars', '2016-11-18', '24K Magic est le troisième album studio du chanteur américain Bruno Mars sorti en 2016, publié chez Atlantic Records.. Le premier single extrait de cet album est 24K Magic sorti le 7 octobre 2016.', '/Php/Vues/images/24K Magic.png');
+
 -- --------------------------------------------------------
 
 --
@@ -43,7 +50,7 @@ CREATE TABLE `album` (
 
 CREATE TABLE `avis` (
   `idAvis` int(11) NOT NULL,
-  `note` int(11) NOT NULL,
+  `note` enum('favorable','indifférent','défavorable') COLLATE utf8_unicode_ci NOT NULL,
   `commentaire` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `user` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `idTitre` int(11) NOT NULL
@@ -59,10 +66,18 @@ CREATE TABLE `titre` (
   `idTitre` int(11) NOT NULL,
   `nomTitre` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `artiste` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `idAlbum` int(11) NOT NULL,
+  `nomAlbum` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `date_debut` date NOT NULL,
   `date_fin` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `titre`
+--
+
+INSERT INTO `titre` (`idTitre`, `nomTitre`, `artiste`, `nomAlbum`, `date_debut`, `date_fin`) VALUES
+(1, '24K Magic', 'Bruno Mars', '24K Magic', '2016-11-18', '2017-02-18'),
+(2, 'Chunky', 'Bruno Mars', '24K Magic', '2016-11-18', '2017-02-18');
 
 -- --------------------------------------------------------
 
@@ -84,7 +99,8 @@ CREATE TABLE `user` (
 -- Index pour la table `album`
 --
 ALTER TABLE `album`
-  ADD PRIMARY KEY (`idAlbum`);
+  ADD PRIMARY KEY (`idAlbum`),
+  ADD UNIQUE KEY `nomAlbum` (`nomAlbum`);
 
 --
 -- Index pour la table `avis`
@@ -99,7 +115,7 @@ ALTER TABLE `avis`
 --
 ALTER TABLE `titre`
   ADD PRIMARY KEY (`idTitre`),
-  ADD KEY `fk_Titre_idAlbum` (`idAlbum`);
+  ADD KEY `fk_Album_Nom` (`nomAlbum`);
 
 --
 -- Index pour la table `user`
@@ -112,6 +128,11 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT pour la table `album`
+--
+ALTER TABLE `album`
+  MODIFY `idAlbum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT pour la table `avis`
 --
 ALTER TABLE `avis`
@@ -120,7 +141,7 @@ ALTER TABLE `avis`
 -- AUTO_INCREMENT pour la table `titre`
 --
 ALTER TABLE `titre`
-  MODIFY `idTitre` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idTitre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
