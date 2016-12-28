@@ -18,20 +18,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <?php
-require('\templates\head.php');
+require_once('\templates\head.php');
 ?>
 
 <!-- /w3layouts-agile -->
-<body class="sticky-header left-side-collapsed"  onload="initMap()">
+<body class="sticky-header left-side-collapsed"">
 <section>
 
-    <?php require ('\templates\header.php');
-    require('\templates\navbar.php');
-    require('\templates\footer.php');
+    <?php
+    require_once('\templates\header.php');
+    require_once('\templates\navbar.php');
+    require_once('\templates\footer.php');
     ?>
 
 
     <div class="browse">
+        <!-- A remplacer par du traitement php.
         <div class="tittle-head two">
             <h3 class="tittle">New Releses <span class="new">New</span></h3>
             <a href="browse.html"><h4 class="tittle third">See all</h4></a>
@@ -100,7 +102,6 @@ require('\templates\head.php');
         </div>
         <div class="clearfix"> </div>
     </div>
-    <!--//End-albums-->
 
     <div class="browse">
         <div class="col-md-3 browse-grid">
@@ -165,6 +166,9 @@ require('\templates\head.php');
         </div>
         <div class="clearfix"> </div>
     </div>
+
+        -->
+
     <!--//End-albums-->
     <!--//discover-view-->
     <!--//music-left-->

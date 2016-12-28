@@ -10,14 +10,13 @@ class FrontController
 {
     function __construct()
     {
-        listeAction_Visitor = array('seConnecter','consulterTitre','lireTitre','afficherCommentaires');
-        listeAction_User = array('seDeconnecter','donnerAvis');
-        listeAction_Admin = array('ajouterTitre','supprimerTitre','modifierTitre','supprimerCommentaire');
-        Autoload::charger();
-        require('C:\Users\samue\Desktop\ProjetWebMusic\Php\config\config.php');
+        $listeAction_Visitor = array('seConnecter','consulterTitre','lireTitre','afficherCommentaires');
+        $listeAction_User = array('seDeconnecter','donnerAvis');
+        $listeAction_Admin = array('ajouterTitre','supprimerTitre','modifierTitre','supprimerCommentaire');
 
         try{
-            //Admin a;
+
+
         }catch (Exception $e){
 
         }

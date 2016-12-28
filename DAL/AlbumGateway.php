@@ -17,12 +17,12 @@ class AlbumGateway
     public function insert($id, $nomAlbum, $idArtiste, $parution, $description, $couverture, $artiste){
         $query='INSERT INTO Album VALUES(:id,:nomAlbum, :artiste, :parution,:desciption,:couverture)';
         $this->con->executeQuery($query, array(
-            ':id'=>array($id,PDO::PARAM_STR),
+            ':id'=>array($id,PDO::PARAM_INT),
             ':nomAlbum'=>array($nomAlbum,PDO::PARAM_STR),
             ':artiste'=>array($artiste,PDO::PARAM_STR),
-            ':parution'=>array($parution,PDO::PARAM_INT),
+            ':parution'=>array($parution,PDO::PARAM_STR),
             ':description'=>array($description, PDO::PARAM_STR),
-            ':couverture'=>array($couverture, 2)
+            ':couverture'=>array($couverture, PDO::PARAM_STR)
         ));
     }
 
@@ -34,7 +34,7 @@ class AlbumGateway
             ':nomAlbum' => array($nomAlbum, PDO::PARAM_STR),
             ':artiste' => array($artiste, PDO::PARAM_STR),
             ':parution' => array($parution, PDO::PARAM_STR),
-            ':description' => array($description, 2),
+            ':description' => array($description, PDO::PARAM_STR),
             ':couverture' => array($couverture, PDO::PARAM_STR)
         ));
 

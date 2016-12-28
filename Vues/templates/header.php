@@ -30,29 +30,28 @@
                 <div class="col-md-4 player">
                     <div class="audio-player">
                         <audio id="audio-player"  controls="controls">
-                            <source src="media/Blue Browne.ogg" type="audio/ogg"></source>
-                            <source src="media/Blue Browne.mp3" type="audio/mpeg"></source>
-                            <source src="media/Georgia.ogg" type="audio/ogg"></source>
-                            <source src="media/Georgia.mp3" type="audio/mpeg"></source></audio>
+                            <source src="/Php/Vues/media/Blue Browne.ogg" type="audio/ogg"></source>
+                            <source src="/Php/Vues/media/Blue Browne.mp3" type="audio/mpeg"></source>
+                            <source src="/Php/Vues/media/Georgia.ogg" type="audio/ogg"></source>
+                            <source src="/Php/Vues/media/Georgia.mp3" type="audio/mpeg"></source></audio>
                     </div>
 
 
                 </div>
                 <div class="col-md-4 login-pop">
-                    <div id="loginpop"> <a href="#" id="loginButton"><span>Login <i class="arrow glyphicon glyphicon-chevron-right"></i></span></a><a class="top-sign" href="#" data-toggle="modal" data-target="#myModal5"><i class="fa fa-sign-in"></i></a>
+                    <div id="loginpop"> <a href="Vues/Connection.php" id="loginButton"><span>Login <i class="arrow glyphicon glyphicon-chevron-right"></i></span></a><a class="top-sign" href="#" data-toggle="modal" data-target="#myModal5"><i class="fa fa-sign-in"></i></a>
                         <div id="loginBox">
-                            <form action="#" method="post" id="loginForm">
+                            <form action="action" method="post" id="loginForm">
                                 <fieldset id="body">
                                     <fieldset>
                                         <label for="email">Pseudo</label>
-                                        <input type="text" name="pseudo" id="pseudo">
+                                        <input type="text" name="Pseudo" id="pseudo">
                                     </fieldset>
                                     <fieldset>
                                         <label for="password">Password</label>
-                                        <input type="password" name="password" id="password">
+                                        <input type="password" name="Mot de passe" id="password">
                                     </fieldset>
-                                    <input type="submit" id="login" value="Sign in">
-                                    <label for="checkbox"><input type="checkbox" id="checkbox"> <i>Remember me</i></label>
+                                    <input type="submit" id="Login" value="Connexion">
                                 </fieldset>
                             </form>
                         </div>

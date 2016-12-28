@@ -11,10 +11,10 @@
 <div class="left-side sticky-left-side">
     <!--logo and iconic logo start-->
     <div class="logo">
-        <h1><a href="index.php">Mosaic<span>c</span></a></h1>
+        <h1><a href="/Php/">Mosaic<span>c</span></a></h1>
     </div>
     <div class="logo-icon text-center">
-        <a href="index.php">M </a>
+        <a href="/Php/">M </a>
     </div>
     <!-- /w3l-agile -->
     <!--logo and iconic logo end-->
@@ -22,11 +22,9 @@
 
         <!--sidebar nav start-->
         <ul class="nav nav-pills nav-stacked custom-nav">
-            <li class="active"><a href="index.php"><i class="lnr lnr-home"></i><span>Home</span></a></li>
-            <li><a href="browse.php"><i class="lnr lnr-music-note"></i> <span>Albums</span></a></li>
+            <li class="active"><a href="/Php/"><i class="lnr lnr-home"></i><span>Home</span></a></li>
+            <li><a href="/Php/Vues/browse.php"><i class="lnr lnr-music-note"></i> <span>Albums</span></a></li>
         </ul>
         <!--sidebar nav end-->
     </div>
 </div>
-
-

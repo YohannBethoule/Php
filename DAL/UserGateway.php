@@ -14,19 +14,29 @@ class UserGateway
         $this->con=$con;
     }
 
-    public function insert($pseudo, $mdp){
-        $query='INSERT INTO User VALUES(:pseudo, :mdp)';
+    public function insert($pseudo, $mdp, $role){
+        $query='INSERT INTO User VALUES(:pseudo, :mdp, :role)';
         $this->con->executeQuery($query, array(
-            ':login'=>array($pseudo, 2),
-            ':mdp'=>array($mdp, 2)
+            ':login'=>array($pseudo, PDO::PARAM_STR),
+            ':mdp'=>array($mdp, PDO::PARAM_STR),
+            ':role'=>array($role, PDO::PARAM_STR)
         ));
     }
 
-    public function update($pseudo, $mdp){
+    public function updateMdp($pseudo, $mdp){
         $query = 'UPDATE User SET mdp=:mdp WHERE pseudo=:pseudo';
         $this->con->executeQuery($query, array(
             ':pseudo' => array($pseudo, PDO::PARAM_INT),
             ':mdp' => array($mdp, PDO::PARAM_STR),
+        ));
+
+    }
+
+    public function updateRole($pseudo, $role){
+        $query = 'UPDATE User SET role=:role WHERE pseudo=:pseudo';
+        $this->con->executeQuery($query, array(
+            ':pseudo' => array($pseudo, PDO::PARAM_INT),
+            ':role' => array($role, PDO::PARAM_STR),
         ));
 
     }
@@ -44,6 +54,6 @@ class UserGateway
             ':pseudo'=>array($pseudo, PDO::PARAM_INT)
         ));
         $user=$this->con->getResults();
-        return new User($user['pseudo'], $user['mdp']);
+        return new User($user['pseudo'], $user['mdp'], $user['role']);
     }
 }

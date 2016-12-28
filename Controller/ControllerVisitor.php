@@ -28,8 +28,8 @@ class ControllerVisitor
                     $this->seConnecter();
                     break;
 
-                case "consulterTitre":
-                    $this->consulterTitre();
+                case "consulterTitres":
+                    $this->consulterTitres();
                     break;
 
                 case "lireTitre":
@@ -80,7 +80,7 @@ class ControllerVisitor
 
     }
 
-    function consulterTitre(){
+    function consulterTitres(){
         global $rep,$vues;
 
     }
