@@ -13,12 +13,15 @@ $rep=__DIR__.'/../';
 //BD
 
 $base="mysql:host=localhost;dbname=musique";
-$login="root";
-$mdp="root";
+$blogin="root";
+$bpassword="root";
+
 
 //Vues
 
-$vues['erreur']='Vues/404.php';
+$vues['erreur']=$rep.'Vues/404.php';
+$vues['connexion']=$rep.'Vues/Connection.php';
+$vues['recherche']=$rep.'Vues/browse.php';
 
 
 ?>

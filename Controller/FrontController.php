@@ -15,7 +15,24 @@ class FrontController
         $listeAction_Admin = array('ajouterTitre','supprimerTitre','modifierTitre','supprimerCommentaire');
 
         try{
+            $user = ModelUser::isAdmin();
+            $action = $_REQUEST['action'];
 
+            if(in_array($action,$listeAction_Admin)){
+                if($user == null || $user['role']=='user')
+                    require_once(vues['connexion']);
+                else
+                    new ControllerAdmin();
+            }
+            else if(in_array($action,$listeAction_User)){
+                if($user == null)
+                    require_once (vues['connexion']);
+                else
+                    new ControllerUser();
+            }
+            else{
+                new ControllerVisitor($action);
+            }
 
         }catch (Exception $e){
 

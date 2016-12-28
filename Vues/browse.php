@@ -33,6 +33,14 @@ require_once('\templates\head.php');
 
 
     <div class="browse">
+        <?php
+            foreach ($res as $ligne){
+                echo "<p>Titre : ".$ligne['nomTitre']." / ";
+                echo "Artiste : ".$ligne['artiste']." / ";
+                echo "Album : ".$ligne['nomAlbum']." / ";
+                echo "Disponible depuis le ".$ligne['date_debut']." jusqu'au ".$ligne['date_fin']."</p><br>";
+            }
+        ?>
         <!-- A remplacer par du traitement php.
         <div class="tittle-head two">
             <h3 class="tittle">New Releses <span class="new">New</span></h3>

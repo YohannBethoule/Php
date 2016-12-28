@@ -9,11 +9,9 @@
 class Validation
 {
 
-    static function validUser($login,$password,$dVueErreur){
+    static function validUser($login,$password){
         if(!isset($login) && !isset($password) ) {
             $dVueErreur[] = "Aucune informations.";
-            $login="";
-            $password="";
         }
 
         $login = filter_var($_POST["login"], FILTER_SANITIZE_STRING);
@@ -33,17 +31,13 @@ class Validation
 
         if (empty($verif_login)) {
             $dVueErreur[] = "Login incorrect.";
-            $login="";
-            $password="";
         }
         else if (empty($verif_mdp)) {
             $dVueErreur[] = "Mot de passe incorrect.";
-            $login="";
-            $password="";
         }
-        //else {
-            //header("Location:affichage.html");
-        //}
+        else
+            $dVueErreur[] = null;
+        return $dVueErreur;
     }
 
     static function validAction($action){

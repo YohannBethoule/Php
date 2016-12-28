@@ -6,7 +6,6 @@
  * Date: 30/11/16
  * Time: 15:05
  */
-require_once('Connexion.php');
 
 class TitreGateway
 {
@@ -53,7 +52,7 @@ class TitreGateway
             ':id'=>array($id, PDO::PARAM_INT)
         ));
         $titre=$this->con->getResults();
-        return new Titre($titre['idTitre'], $titre['nomTitre'], $titre['artiste'], $titre['idAlbum'], $titre['date_debut'], $titre['date_fin']);
+        return $titre;
     }
 
     public function searchByName($nom){
@@ -62,21 +61,31 @@ class TitreGateway
             ':nom'=>array($nom, PDO::PARAM_STR)
         ));
         $results=$this->con->getResults();
-        foreach ($results as $row){
-            $tab_titre[]=new Titre($row['idTitre'], $row['nomTitre'], $row['artiste'], $row['idAlbum'], $row['date_debut'], $row['date_fin']);
-        }
-        return $tab_titre;
+        /*foreach ($results as $row){
+            $tab_titre[]=new Titre($row['idTitre'], $row['nomTitre'], $row['artiste'], $row['nomAlbum'], $row['date_debut'], $row['date_fin']);
+        }*/
+        return $results;
     }
 
-    public function searchByAlbum($idAlbum){
-        $query='SELECT * FROM Titre WHERE idAlbum=:idAlbum';
+    public function searchByAlbum($nomAlbum){
+        $query='SELECT * FROM Titre WHERE nomAlbum=:nomAlbum';
         $this->con->executeQuery($query, array(
-            ':idAlbum'=>array($idAlbum, PDO::PARAM_STR)
+            ':nomAlbum'=>array($nomAlbum, PDO::PARAM_STR)
         ));
         $results=$this->con->getResults();
-        foreach ($results as $row){
-            $tab_titre[]=new Titre($row['idTitre'], $row['nomTitre'], $row['artiste'], $row['idAlbum'], $row['date_debut'], $row['date_fin']);
-        }
-        return $tab_titre;
+        /*foreach ($results as $row){
+            $tab_titre[]=new Titre($row['idTitre'], $row['nomTitre'], $row['artiste'], $row['nomAlbum'], $row['date_debut'], $row['date_fin']);
+        }*/
+        return $results;
+    }
+
+    public function getAll(){
+        $query='SELECT * FROM Titre';
+        $this->con->executeQuery($query);
+        $results=$this->con->getResults();
+        /*foreach ($results as $row){
+            $tab_titre[]=new Titre($row['idTitre'], $row['nomTitre'], $row['artiste'], $row['nomAlbum'], $row['date_debut'], $row['date_fin']);
+        }*/
+        return $results;
     }
 }

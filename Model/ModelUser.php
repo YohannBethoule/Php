@@ -6,9 +6,9 @@
  * Date: 13/12/2016
  * Time: 18:50
  */
-class ModelAdmin
+class ModelUser
 {
-    public function isAdmin(){
+    public static function isAdmin(){
         if(isset($_SESSION['login']) && isset ($_SESSION['role'])){
             $login=Nettoyer::nettoyer_string($_SESSION['login']);
             $role=Nettoyer::nettoyer_string($_SESSION['role']);
@@ -25,7 +25,7 @@ class ModelAdmin
             return null;
     }
 
-    public function isUser(){
+    public static function isUser(){
         if(isset($_SESSION['login']) && isset ($_SESSION['role'])){
             $login=Nettoyer::nettoyer_string($_SESSION['login']);
             $role=Nettoyer::nettoyer_string($_SESSION['role']);
@@ -42,10 +42,10 @@ class ModelAdmin
             return null;
     }
 
-    public function connexion($login,$mdp){
+    public static function connexion($login,$mdp){
         $login=Nettoyer::nettoyer_string($login);
         $mdp=Nettoyer::nettoyer_string($mdp);
-        $ugt=new UserGateway();
+        $ugt=new UserGateway(new Connexion());
         $user= $ugt->search($login);
         if($login == $user['login']){
             $_SESSION['role']=user['role'];
@@ -55,7 +55,7 @@ class ModelAdmin
             throw new Exception("Le pseudo n'est pas reconnu.");
     }
 
-    public function deconnexion(){
+    static public function deconnexion(){
         session_unset();
     }
 

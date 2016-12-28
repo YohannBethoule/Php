@@ -34,12 +34,17 @@ require('\templates\head.php');
         <div class="inner-content">
             <!-- /error_page -->
             <div class="error-top">
-                <img src="images/pic_error.png" alt="" />
+                <img src="/Php/Vues/images/pic_error.png" alt="" />
                 <h3>Erreur....<h3>
+                        <?php
+                        foreach($dVueErreur as $erreur){
+                            echo ($erreur);
+                        }
+                        ?>
                         <div class="clearfix">
                         </div>
                         <div class="error">
-                            <a class="not" href="index.php">Back To Home</a>
+                            <a class="not" href="/Php/">Back To Home</a>
                         </div>
 
                         <!-- //error_page -->

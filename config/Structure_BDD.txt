@@ -5,7 +5,7 @@ TITRE
 -idTitre: int PRIMARY 
 -nomTitre: varchar(200)
 -artiste: varchar(200)
--idAlbum: int FOREIGN KEY
+-nomAlbum: varchar(200) FOREIGN KEY
 -date_debut: date
 -date_fin: date
 

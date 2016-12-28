@@ -11,25 +11,19 @@
 class ControllerVisitor
 {
 
-    function __construct()
+    function __construct($action)
     {
         $dVueErreur = array ();
 
         try {
 
-            $action = $_REQUEST['action'];
-
             switch ($action) {
                 case NULL:
-                    $this->Reinit();
+                    $this->consulterTitres();
                     break;
 
                 case "seConnecter":
                     $this->seConnecter();
-                    break;
-
-                case "consulterTitres":
-                    $this->consulterTitres();
                     break;
 
                 case "lireTitre":
@@ -61,28 +55,29 @@ class ControllerVisitor
         exit(0);
     }
 
-
-    function Reinit() {
-        global $rep,$vues;
-
-        $dVue = array (
-            //Initialise tout à zéro.
-        );
-        require ($rep.$vues['vueindex']);
-    }
-
     function seConnecter(){
         global $rep,$vues;
+        require_once($vues['connexion']);
         $login=$_POST['login'];
         $password=$_POST['password'];
-        \Controller\Validation::validUser($login,$password,$dVueErreur);
-        //Instancier Model et appeler sa méthode de connexion.
+        $tab=Validation::validUser($login,$password);
+        if($tab == null){
+            ModelUser::connexion($login,$password);
+        }
+        else
+            require_once($vues['erreur']);
 
     }
 
     function consulterTitres(){
         global $rep,$vues;
-
+        try{
+            $res=ModelVisitor::listeTitres();
+            require_once($vues['recherche']);
+        }catch (Exception $e){
+            $dVueErreur[]=$e->getMessage();
+            require_once($vues['erreur']);
+        }
     }
 
     function lireTitre(){

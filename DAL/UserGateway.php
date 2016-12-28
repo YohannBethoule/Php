@@ -54,6 +54,6 @@ class UserGateway
             ':pseudo'=>array($pseudo, PDO::PARAM_INT)
         ));
         $user=$this->con->getResults();
-        return new User($user['pseudo'], $user['mdp'], $user['role']);
+        return $user;
     }
 }
