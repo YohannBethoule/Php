@@ -17,9 +17,10 @@ class FrontController
 
         try{
             $user = ModelUser::isAdmin();
-            if(isset($_REQUEST['action']))
-                //Nettoyage ?
+            if(isset($_REQUEST['action'])) {
                 $action = $_REQUEST['action'];
+                $action = Nettoyer::nettoyer_string($action);
+            }
             else
                 $action=null;
 
