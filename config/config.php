@@ -23,5 +23,4 @@ $vues['erreur']=$rep.'Vues/404.php';
 $vues['connexion']=$rep.'Vues/Connection.php';
 $vues['recherche']=$rep.'Vues/browse.php';
 
-
 ?>

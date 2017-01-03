@@ -86,7 +86,7 @@ INSERT INTO `titre` (`idTitre`, `nomTitre`, `artiste`, `nomAlbum`, `date_debut`,
 --
 
 CREATE TABLE `user` (
-  `peusdo` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `pseudo` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `mdp` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `role` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

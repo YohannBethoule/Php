@@ -39,24 +39,16 @@
 
                 </div>
                 <div class="col-md-4 login-pop">
-                    <div id="loginpop"> <a href="Vues/Connection.php" id="loginButton"><span>Login <i class="arrow glyphicon glyphicon-chevron-right"></i></span></a><a class="top-sign" href="#" data-toggle="modal" data-target="#myModal5"><i class="fa fa-sign-in"></i></a>
-                        <div id="loginBox">
-                            <form action="action" method="post" id="loginForm">
-                                <fieldset id="body">
-                                    <fieldset>
-                                        <label for="email">Pseudo</label>
-                                        <input type="text" name="Pseudo" id="pseudo">
-                                    </fieldset>
-                                    <fieldset>
-                                        <label for="password">Password</label>
-                                        <input type="password" name="Mot de passe" id="password">
-                                    </fieldset>
-                                    <input type="submit" id="Login" value="Connexion">
-                                </fieldset>
-                            </form>
-                        </div>
+                    <div id="loginpop">
+                        <?php
+                            if(!isset($_SESSION['login'])){
+                                echo "<a href=\"Vues/Connection.php\" id=\"loginButton\"><span>Login <i class=\"arrow glyphicon glyphicon-chevron-right\"></i></span></a><a class=\"top-sign\" href=\"#\" data-toggle=\"modal\" data-target=\"#myModal5\"><i class=\"fa fa-sign-in\"></i></a>";
+                            }
+                            else{
+                                echo $_SESSION['login'];
+                            }
+                        ?>
                     </div>
-
                 </div>
                 <div class="clearfix"> </div>
             </div>

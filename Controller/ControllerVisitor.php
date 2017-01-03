@@ -13,6 +13,7 @@ class ControllerVisitor
 
     function __construct($action)
     {
+        global $vues;
         $dVueErreur = array ();
 
         try {
@@ -21,11 +22,6 @@ class ControllerVisitor
                 case NULL:
                     $this->consulterTitres();
                     break;
-
-                case "seConnecter":
-                    $this->seConnecter();
-                    break;
-
                 case "lireTitre":
                     $this->lireTitre();
                     break;
@@ -36,41 +32,28 @@ class ControllerVisitor
 
                 default:
                     $dVueErreur = "Erreur d'appel php.";
-                    require($rep . $vues['erreur']);
+                    require($vues['erreur']);
             }
         }
         catch (PDOException $e)
         {
             //si erreur BD, pas le cas ici
             $dVueErreur[] =	"Erreur inattendue!!! ";
-            require ($rep.$vues['erreur']);
+            require ($vues['erreur']);
         }
 
         catch (Exception $e2)
 	    {
             $dVueErreur[] =	"Erreur inattendue!!! ";
-            require ($rep.$vues['erreur']);
+            require ($vues['erreur']);
         }
 
         exit(0);
     }
 
-    function seConnecter(){
-        global $rep,$vues;
-        require_once($vues['connexion']);
-        $login=$_POST['login'];
-        $password=$_POST['password'];
-        $tab=Validation::validUser($login,$password);
-        if($tab == null){
-            ModelUser::connexion($login,$password);
-        }
-        else
-            require_once($vues['erreur']);
-
-    }
 
     function consulterTitres(){
-        global $rep,$vues;
+        global $vues;
         try{
             $res=ModelVisitor::TousLesTitres();
             usort($res,function($a,$b){
@@ -85,12 +68,12 @@ class ControllerVisitor
     }
 
     function lireTitre(){
-        global $rep,$vues;
+        global $vues;
 
     }
 
     function afficherCommentaires(){
-        global $rep,$vues;
+        global $vues;
 
     }
 }

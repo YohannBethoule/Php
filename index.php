@@ -14,8 +14,6 @@ require_once(__DIR__.'/Vues/templates/head.php');
 <body class="sticky-header left-side-collapsed">
 <section>
 
-    <input type=hidden name="action" value=""/>
-
     <?php
     require_once(__DIR__.'/Vues/templates/header.php');
     require_once(__DIR__.'/Vues/templates/navbar.php');
@@ -24,6 +22,7 @@ require_once(__DIR__.'/Vues/templates/head.php');
     require_once(__DIR__.'/config/config.php');
 
     require_once(__DIR__.'/config/Autoload.php');
+    session_start();
     Autoload::charger();
 
     $cont = new FrontController();

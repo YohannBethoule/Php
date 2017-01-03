@@ -21,7 +21,7 @@ require('\templates\head.php');
 ?>
 
 <!-- /w3layouts-agile -->
-<body class="sticky-header left-side-collapsed"  onload="initMap()">
+<body class="sticky-header left-side-collapsed" >
 <section>
 
     <?php require ('\templates\header.php');

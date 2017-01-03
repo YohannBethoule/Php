@@ -8,18 +8,19 @@
  */
 class ControllerUser extends ControllerVisitor
 {
-
-    function __construct()
+    function __construct($action)
     {
+        global $vues;
         $dVueEreur = array ();
 
         try {
-
-            $action = $_REQUEST['action'];
-
             switch ($action) {
                 case NULL:
                     $this->consulterTitres();
+                    break;
+
+                case "seConnecter":
+                    $this->seConnecter();
                     break;
 
                 case "seDeconnecter":
@@ -32,23 +33,36 @@ class ControllerUser extends ControllerVisitor
 
                 default:
                     $dVueEreur = "Erreur d'appel php.";
-                    require($rep . $vues['vuephp1']);
+                    require($vues['erreur']);
             }
         }
         catch (PDOException $e)
         {
             //si erreur BD, pas le cas ici
             $dVueEreur[] =	"Erreur inattendue!!! ";
-            require ($rep.$vues['erreur']);
+            require ($vues['erreur']);
         }
 
         catch (Exception $e2)
         {
             $dVueEreur[] =	"Erreur inattendue!!! ";
-            require ($rep.$vues['erreur']);
+            require ($vues['erreur']);
         }
-
         exit(0);
+    }
+
+    function seConnecter()
+    {
+        global $vues;
+        //require_once($vues['connexion']);
+        $login = $_POST['login'];
+        $password = $_POST['password'];
+        $res = ModelUser::connexion($login, $password);
+        if (is_bool($res)) {
+            header("Refresh:0");
+        } else {
+            require_once($vues['connexion']);
+        }
     }
 
     function seDeconnecter(){

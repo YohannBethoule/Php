@@ -11,7 +11,7 @@ class Validation
 
     static function validUser($login,$password){
         if(!isset($login) && !isset($password) ) {
-            $dVueErreur[] = "Aucune informations.";
+            return false;
         }
 
         $login = filter_var($_POST["login"], FILTER_SANITIZE_STRING);
@@ -30,13 +30,13 @@ class Validation
         );
 
         if (empty($verif_login)) {
-            $dVueErreur[] = "Login incorrect.";
+            $dVueErreur = "Login incorrect.";
         }
         else if (empty($verif_mdp)) {
             $dVueErreur[] = "Mot de passe incorrect.";
         }
         else
-            $dVueErreur[] = null;
+            return true;
         return $dVueErreur;
     }
 
