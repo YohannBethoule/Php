@@ -11,7 +11,7 @@ class FrontController
     function __construct()
     {
         global $vues;
-        $listeAction_Visitor = array('consulterTitre','lireTitre','afficherCommentaires');
+        $listeAction_Visitor = array('consulterTitres','detailTitre','afficherCommentaires');
         $listeAction_User = array('seConnecter','seDeconnecter','donnerAvis');
         $listeAction_Admin = array('ajouterTitre','supprimerTitre','modifierTitre','supprimerCommentaire');
 
@@ -41,7 +41,8 @@ class FrontController
             }
 
         }catch (Exception $e){
-
+            $dVueErreur = $e;
+            require_once($vues['erreur']);
         }
     }
 

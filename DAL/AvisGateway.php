@@ -9,7 +9,7 @@
 
 
 
-class AvisGateway
+class avisGateway
 {
     private $con;
     public function __construct(Connexion $con)
@@ -17,64 +17,58 @@ class AvisGateway
         $this->con=$con;
     }
 
-    public function insert($id, $titre, $user, $note, $commentaire){
-        $query='INSERT INTO Avis VALUES(:id,:titre,:user,:note,:commentaire)';
+    public function insert($note, $commentaire, $user, $idTitre){
+        $query='INSERT INTO avis VALUES(null,:note,:commentaire,:user,:idTitre)';
         $this->con->executeQuery($query, array(
-            ':id'=>array($id,PDO::PARAM_STR),
-            ':titre'=>array($titre,PDO::PARAM_STR),
-            ':user'=>array($user,PDO::PARAM_STR),
             ':note'=>array($note,PDO::PARAM_STR),
-            ':commentaire'=>array($commentaire, PDO::PARAM_STR)
+            ':commentaire'=>array($commentaire,PDO::PARAM_STR),
+            ':user'=>array($user,PDO::PARAM_STR),
+            ':idTitre'=>array($idTitre, PDO::PARAM_STR)
         ));
     }
 
-    public function delete($id){
-        $query= 'DELETE FROM Avis WHERE idAvis=:id';
+    public function delete($idTitre){
+        $query= 'DELETE FROM avis WHERE idAvis=:idTitre';
         $this->con->executeQuery($query, array(
-            ':id' => array($id, PDO::PARAM_INT)
+            ':idTitre' => array($idTitre, PDO::PARAM_INT)
         ));
     }
 
-    public function search($id){
-        $query='SELECT * FROM Avis WHERE idAvis=:id';
+    public function search($idTitre){
+        $query='SELECT * FROM avis WHERE idAvis=:idTitre';
         $this->con->executeQuery($query, array(
-            ':id'=>array($id, PDO::PARAM_INT)
+            ':idTitre'=>array($idTitre, PDO::PARAM_INT)
         ));
         $avis=$this->con->getResults();
         return $avis;
     }
 
     public function searchByUser($user){
-        $query='SELECT * FROM Avis WHERE user=:user';
+        $query='SELECT * FROM avis WHERE user=:user';
         $this->con->executeQuery($query, array(
             ':user'=>array($user, PDO::PARAM_STR)
         ));
         $results=$this->con->getResults();
-        foreach ($results as $row){
-            $tab_avis[]=new Avis($row['idAvis'], $row['user'], $row['idTitre'], $row['note'], $row['commentaire']);
-        }
         return $results;
     }
 
-    public function searchByTitre($idTitre){
-        $query='SELECT * FROM Avis WHERE idTitre=:idTitre';
-        $this->con->executeQuery($query, array(
-            ':idTitre'=>array($idTitre, PDO::PARAM_STR)
-        ));
-        $results=$this->con->getResults();
-        /*foreach ($results as $row){
-            $tab_avis[]=new Avis($row['idAvis'], $row['user'], $row['idTitre'], $row['note'], $row['commentaire']);
-        }*/
-        return $results;
-    }
-
-    public function countByTitreByAvis($idTitre,$avis){
-        $query='SELECT * FROM Avis WHERE idTitre=:idTitre AND note=:avis';
+    public function countByTitreByavis($idTitre,$note){
+        $query='SELECT * FROM avis WHERE idTitre=:idTitre AND note=:note';
         $this->con->executeQuery($query, array(
             ':idTitre'=>array($idTitre, PDO::PARAM_STR),
-            ':avis'=>array($avis,PDO::PARAM_STR)
+            ':note'=>array($note,PDO::PARAM_STR)
         ));
         $results=$this->con->getResults();
         return count($results);
     }
+
+    public function searchAncienByTitre($idTitre){
+        $query='SELECT * FROM avis WHERE idTitre=:idTitre AND MIN(idAvis)';
+        $this->con->executeQuery($query, array(
+            ':idTitre'=>array($idTitre, PDO::PARAM_STR)
+        ));
+        $results=$this->con->getResults();
+        return $results;
+    }
+
 }

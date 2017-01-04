@@ -67,8 +67,32 @@ class ModelUser
         }
     }
 
-    static public function deconnexion(){
+    public static function deconnexion(){
         session_unset();
     }
 
+    public static function insererCommentaire($note,$commentaire,$user,$idTitre){
+        global $blogin,$bpassword,$base;
+        Validation::validNote($note);
+        $commentaire=Nettoyer::nettoyer_string($commentaire);
+        $user=Nettoyer::nettoyer_string($user);
+        $idTitre=Nettoyer::nettoyer_int($idTitre);
+
+        $gt=new AvisGateway(new Connexion($base,$blogin,$bpassword));
+        $comments=$gt->searchByTitre();
+        if(count($comments)>=3){
+            $idsuprr=$gt->searchAncienByTitre($idTitre);
+            if(isset($idsuprr)){
+                $gt->delete($idsuprr);
+                $gt->insert($note,$commentaire,$user,$idTitre);
+            }
+            else{
+                throw new Exception("Impossible de trouver le plus ancien commentaire à remplacer.");
+            }
+        }
+        else{
+            $gt->insert($note,$commentaire,$user,$idTitre);
+        }
+        return true;
+    }
 }

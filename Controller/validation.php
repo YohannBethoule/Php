@@ -40,9 +40,13 @@ class Validation
         return $dVueErreur;
     }
 
-    static function validAction($action){
-        if (!isset($action)) {
-            throw new Exception("Aucune action trouvé.");
+    static function validNote($note){
+        $listeNotes = array("favorable","indifférent","défavorable");
+        if(isset($note)) {
+            if (in_array($note, $listeNotes))
+                return $note;
+            else
+                throw new Exception("La note saisie n'est pas correcte.");
         }
     }
 

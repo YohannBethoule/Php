@@ -86,10 +86,41 @@ class ModelVisitor
                 "date_fin"=>$row['date_fin'],
                 "avisF"=>$avisF[$i],
                 "avisI"=>$avisI[$i],
-                "avisD"=>$avisD[$i]
+                "avisD"=>$avisD[$i],
+                "idTitre"=>$row['idTitre']
             );
             $i++;
         }
         return $res;
+    }
+
+    public static function detailTitre($idTitre){
+        global $bpassword, $blogin, $base;
+        $con = new Connexion($base, $blogin, $bpassword);
+        $tigt = new TitreGateway($con);
+        $algt = new AlbumGateway($con);
+        $avgt = new AvisGateway($con);
+
+        $titre = $tigt->searchByid($idTitre);
+        $album = $algt->search($titre['idAlbum']);
+        $avis = $avgt->search($idTitre);
+        $nbAvisF = $avgt->countByTitreByavis($titre['idTitre'],"favorable");
+        $nbAvisI = $avgt->countByTitreByavis($titre['idTitre'],"indifférent");
+        $nbAvisD = $avgt->countByTitreByavis($titre['idTitre'],"défavorable");
+
+        $res = array(
+            "nomTitre" => $titre['nomTitre'],
+            "duree" => $titre['duree'],
+            "nbAvisF" => $nbAvisF,
+            "nbAvisI" => $nbAvisI,
+            "nbAvisD" => $nbAvisD,
+            "dateDebut" => $titre['date_debut'],
+            "dateFin" => $titre['date_fin'],
+            "artiste" => $titre['artiste'],
+            "parution" => $album['parution'],
+            "couv" => $album['couverture'],
+            "comm" => $avis
+        );
+
     }
 }

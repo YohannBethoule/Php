@@ -44,15 +44,18 @@ require_once('\templates\head.php');
                 <th>+ d'Infos</th>
             </tr>
             <?php
-                foreach($res as $row){
-                    echo "<tr>";
-                    echo "<th>".$row['titre']."</th>";
-                    echo "<th><img src=".$row['couverture']."></th>";
-                    echo "<th>".$row['date_debut']."--".$row['date_fin']."</th>";
-                    echo "<th>".$row['avisF']."</th>";
-                    echo "<th>".$row['avisI']."</th>";
-                    echo "<th>".$row['avisD']."</th>";
-                    echo "</tr>";
+                if(isset($res)) {
+                    foreach ($res as $row) {
+                        echo "<tr>";
+                        echo "<th>" . $row['titre'] . "</th>";
+                        echo "<th><img src=" . $row['couverture'] . "></th>";
+                        echo "<th>" . $row['date_debut'] . "--" . $row['date_fin'] . "</th>";
+                        echo "<th>" . $row['avisF'] . "</th>";
+                        echo "<th>" . $row['avisI'] . "</th>";
+                        echo "<th>" . $row['avisD'] . "</th>";
+                        echo "<th> <a href=\"/Php/Vues/single.php?idT=" . $row['idTitre'] . "\">+</a></th>";
+                        echo "</tr>";
+                    }
                 }
             ?>
         </table>

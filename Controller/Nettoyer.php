@@ -13,6 +13,15 @@ class Nettoyer
             return filter_var($string,FILTER_SANITIZE_STRING);
         }
         throw new Exception("Paramètre passé pour le nettoyage n'est pas initialisé.");
-}
+    }
+
+    static function nettoyer_int($int){
+        if(isset($int)){
+            return filter_var($int,FILTER_SANITIZE_NUMBER_INT);
+        }
+        throw new Exception("Problème avec le paramètre non initialisé.");
+    }
+
+
 
 }

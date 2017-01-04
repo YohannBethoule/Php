@@ -37,8 +37,10 @@ require('\templates\head.php');
                 <img src="/Php/Vues/images/pic_error.png" alt="" />
                 <h3>Erreur....<h3>
                         <?php
-                        foreach($dVueErreur as $erreur){
-                            echo ($erreur);
+                        if(isset($dVueErreur)) {
+                            foreach ($dVueErreur as $erreur) {
+                                echo($erreur);
+                            }
                         }
                         ?>
                         <div class="clearfix">

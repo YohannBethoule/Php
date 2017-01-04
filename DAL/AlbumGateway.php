@@ -15,7 +15,7 @@ class AlbumGateway
     }
 
     public function insert($id, $nomAlbum, $idArtiste, $parution, $description, $couverture, $artiste){
-        $query='INSERT INTO Album VALUES(:id,:nomAlbum, :artiste, :parution,:desciption,:couverture)';
+        $query='INSERT INTO album VALUES(:id,:nomAlbum, :artiste, :parution,:desciption,:couverture)';
         $this->con->executeQuery($query, array(
             ':id'=>array($id,PDO::PARAM_INT),
             ':nomAlbum'=>array($nomAlbum,PDO::PARAM_STR),
@@ -28,7 +28,7 @@ class AlbumGateway
 
 
     public function update($id,$nomAlbum,$artiste,$parution, $description, $couverture){
-        $query = 'UPDATE Album SET nomAlbum=:nomAlbum, artiste=:artiste, parution=:parution, description=:description, couverture=:couverture WHERE idAlbum = :id';
+        $query = 'UPDATE album SET nomAlbum=:nomAlbum, artiste=:artiste, parution=:parution, description=:description, couverture=:couverture WHERE idAlbum = :id';
         $this->con->executeQuery($query, array(
             ':id' => array($id, PDO::PARAM_INT),
             ':nomAlbum' => array($nomAlbum, PDO::PARAM_STR),
@@ -41,14 +41,14 @@ class AlbumGateway
     }
 
     public function delete($id){
-        $query= 'DELETE FROM Album WHERE idAlbum=:id';
+        $query= 'DELETE FROM album WHERE idAlbum=:id';
         $this->con->executeQuery($query, array(
             ':id' => array($id, PDO::PARAM_INT)
         ));
     }
 
     public function search($id){
-        $query='SELECT * FROM Album WHERE idAlbum=:id';
+        $query='SELECT * FROM album WHERE idAlbum=:id';
         $this->con->executeQuery($query, array(
             ':id'=>array($id, PDO::PARAM_INT)
         ));
@@ -57,31 +57,31 @@ class AlbumGateway
     }
 
     public function searchByName($nom){
-        $query='SELECT * FROM Album WHERE nomAlbum=:nom';
+        $query='SELECT * FROM album WHERE nomAlbum=:nom';
         $this->con->executeQuery($query, array(
             ':nom'=>array($nom, PDO::PARAM_STR)
         ));
         $results=$this->con->getResults();
         foreach ($results as $row){
-            $tab_album[]=new Album($row['nom'], $row['artiste'], $row['album'], $row['date_debut'], $row['date_fin']);
+            $tab_album[]=new album($row['nom'], $row['artiste'], $row['album'], $row['date_debut'], $row['date_fin']);
         }
         return $results;
     }
 
     public function searchByArtiste($artiste){
-        $query='SELECT * FROM Album WHERE artiste=:artiste';
+        $query='SELECT * FROM album WHERE artiste=:artiste';
         $this->con->executeQuery($query, array(
             ':artiste'=>array($artiste, PDO::PARAM_STR)
         ));
         $results=$this->con->getResults();
         foreach ($results as $row){
-            $tab_album[]=new Album($row['idAlbum'], $row['nomAlbum'], $row['artiste'], $row['parution'], $row['description'], $row['couverture']);
+            $tab_album[]=new album($row['idAlbum'], $row['nomAlbum'], $row['artiste'], $row['parution'], $row['description'], $row['couverture']);
         }
         return $results;
     }
 
     public function searchCouvByName($nomAlbum){
-        $query='SELECT couverture FROM Album WHERE nomAlbum=:nomAlbum';
+        $query='SELECT couverture FROM album WHERE nomAlbum=:nomAlbum';
         $this->con->executeQuery($query, array(
             ':nomAlbum'=>array($nomAlbum, PDO::PARAM_STR)
         ));

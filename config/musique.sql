@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 28 Décembre 2016 à 16:36
+-- Généré le :  Mer 04 Janvier 2017 à 19:21
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -40,7 +40,7 @@ CREATE TABLE `album` (
 --
 
 INSERT INTO `album` (`idAlbum`, `nomAlbum`, `artiste`, `parution`, `description`, `couverture`) VALUES
-(1, '24K Magic', 'Bruno Mars', '2016-11-18', '24K Magic est le troisième album studio du chanteur américain Bruno Mars sorti en 2016, publié chez Atlantic Records.. Le premier single extrait de cet album est 24K Magic sorti le 7 octobre 2016.', '/Php/Vues/images/24K Magic.png');
+(1, '24K Magic', 'Bruno Mars', '2016-11-18', '24K Magic est le troisième album studio du chanteur américain Bruno Mars sorti en 2016, publié chez Atlantic Records.. Le premier single extrait de cet album est 24K Magic sorti le 7 octobre 2016.', '/Php/Vues/images/24KMagic.png');
 
 -- --------------------------------------------------------
 
@@ -56,6 +56,15 @@ CREATE TABLE `avis` (
   `idTitre` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Contenu de la table `avis`
+--
+
+INSERT INTO `avis` (`idAvis`, `note`, `commentaire`, `user`, `idTitre`) VALUES
+(1, 'favorable', 'Ce titre est intéressant.', 'sabussy', 1),
+(2, 'favorable', 'gdfsdq', 'sabussy', 3),
+(3, 'favorable', 'zefdv', 'michel', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -68,16 +77,18 @@ CREATE TABLE `titre` (
   `artiste` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `nomAlbum` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `date_debut` date NOT NULL,
-  `date_fin` date NOT NULL
+  `date_fin` date NOT NULL,
+  `duree` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `titre`
 --
 
-INSERT INTO `titre` (`idTitre`, `nomTitre`, `artiste`, `nomAlbum`, `date_debut`, `date_fin`) VALUES
-(1, '24K Magic', 'Bruno Mars', '24K Magic', '2016-11-18', '2017-02-18'),
-(2, 'Chunky', 'Bruno Mars', '24K Magic', '2016-11-18', '2017-02-18');
+INSERT INTO `titre` (`idTitre`, `nomTitre`, `artiste`, `nomAlbum`, `date_debut`, `date_fin`, `duree`) VALUES
+(1, '24K Magic', 'Bruno Mars', '24K Magic', '2016-11-18', '2017-02-18', 227),
+(2, 'Chunky', 'Bruno Mars', '24K Magic', '2016-11-18', '2017-02-18', 187),
+(3, 'Perm', 'Bruno Mars', '24K Magic', '2016-11-18', '2017-02-18', 211);
 
 -- --------------------------------------------------------
 
@@ -90,6 +101,14 @@ CREATE TABLE `user` (
   `mdp` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `role` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `user`
+--
+
+INSERT INTO `user` (`pseudo`, `mdp`, `role`) VALUES
+('sabussy', 'Sabussy.63', 'admin'),
+('michel', 'Michel33', 'user');
 
 --
 -- Index pour les tables exportées
@@ -136,12 +155,12 @@ ALTER TABLE `album`
 -- AUTO_INCREMENT pour la table `avis`
 --
 ALTER TABLE `avis`
-  MODIFY `idAvis` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idAvis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `titre`
 --
 ALTER TABLE `titre`
-  MODIFY `idTitre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idTitre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

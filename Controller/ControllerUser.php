@@ -54,7 +54,6 @@ class ControllerUser extends ControllerVisitor
     function seConnecter()
     {
         global $vues;
-        //require_once($vues['connexion']);
         $login = $_POST['login'];
         $password = $_POST['password'];
         $res = ModelUser::connexion($login, $password);
@@ -66,12 +65,20 @@ class ControllerUser extends ControllerVisitor
     }
 
     function seDeconnecter(){
-
-
+        session_unset();
     }
 
     function donnerAvis(){
+        global $vues;
+        $note = $_POST['note'];
+        $commentaire = $_POST['commentaire'];
+        if(isset($_SESSION['login']))
+            $user = $_SESSION['login'];
+        else
+            throw  new Exception("Votre session n'est pas reconnue.");
+        $idTitre = $_GET['idT'];
 
-
+        if(ModelUser::insererCommentaire($note,$commentaire,$user,$idTitre))
+            header("Refresh:0");
     }
 }

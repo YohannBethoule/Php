@@ -22,8 +22,8 @@ class ControllerVisitor
                 case NULL:
                     $this->consulterTitres();
                     break;
-                case "lireTitre":
-                    $this->lireTitre();
+                case "detailTitre":
+                    $this->detailTitre();
                     break;
 
                 case "afficherCommentaires":
@@ -67,8 +67,12 @@ class ControllerVisitor
         }
     }
 
-    function lireTitre(){
+    function detailTitre(){
         global $vues;
+        $idTitre = $_GET['idT'];
+        $idTitre = Nettoyer::nettoyer_int($idTitre);
+        ModelVisitor::detailTitre($idTitre);
+        require_once ($vues['detail']);
 
     }
 
