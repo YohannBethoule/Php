@@ -121,7 +121,7 @@ ALTER TABLE `titre`
 -- Index pour la table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`peusdo`);
+  ADD PRIMARY KEY (`pseudo`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
