@@ -69,11 +69,16 @@ class ControllerVisitor
 
     function detailTitre(){
         global $vues;
-        $idTitre = $_GET['idT'];
-        $idTitre = Nettoyer::nettoyer_int($idTitre);
-        ModelVisitor::detailTitre($idTitre);
-        require_once ($vues['detail']);
-
+        try {
+            $idTitre = $_GET['idT'];
+            $idTitre = Nettoyer::nettoyer_int($idTitre);
+            $res = ModelVisitor::detailTitre($idTitre);
+            //var_dump($res);
+            require_once($vues['detail']);
+        } catch (Exception $e){
+            $dVueErreur[]= $e->getMessage();
+            require_once($vues['erreur']);
+        }
     }
 
     function afficherCommentaires(){

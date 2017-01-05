@@ -62,10 +62,7 @@ class AlbumGateway
             ':nom'=>array($nom, PDO::PARAM_STR)
         ));
         $results=$this->con->getResults();
-        foreach ($results as $row){
-            $tab_album[]=new album($row['nom'], $row['artiste'], $row['album'], $row['date_debut'], $row['date_fin']);
-        }
-        return $results;
+        return $results[0];
     }
 
     public function searchByArtiste($artiste){
@@ -74,9 +71,6 @@ class AlbumGateway
             ':artiste'=>array($artiste, PDO::PARAM_STR)
         ));
         $results=$this->con->getResults();
-        foreach ($results as $row){
-            $tab_album[]=new album($row['idAlbum'], $row['nomAlbum'], $row['artiste'], $row['parution'], $row['description'], $row['couverture']);
-        }
         return $results;
     }
 

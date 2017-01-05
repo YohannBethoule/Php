@@ -38,8 +38,13 @@ require('\templates\head.php');
                 <h3>Erreur....<h3>
                         <?php
                         if(isset($dVueErreur)) {
-                            foreach ($dVueErreur as $erreur) {
-                                echo($erreur);
+                            if(is_array($dVueErreur)) {
+                                foreach ($dVueErreur as $erreur) {
+                                    echo($erreur);
+                                }
+                            }
+                            else {
+                                echo $dVueErreur;
                             }
                         }
                         ?>

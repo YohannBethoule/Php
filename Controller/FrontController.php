@@ -15,6 +15,8 @@ class FrontController
         $listeAction_User = array('seConnecter','seDeconnecter','donnerAvis');
         $listeAction_Admin = array('ajouterTitre','supprimerTitre','modifierTitre','supprimerCommentaire');
 
+        //var_dump($_REQUEST['action']);
+
         try{
             $user = ModelUser::isAdmin();
             if(isset($_REQUEST['action'])) {

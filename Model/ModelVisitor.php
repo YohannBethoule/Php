@@ -102,11 +102,17 @@ class ModelVisitor
         $avgt = new AvisGateway($con);
 
         $titre = $tigt->searchByid($idTitre);
-        $album = $algt->search($titre['idAlbum']);
+        if($titre==null)
+            throw new Exception("Le titre n'a pas pu être trouvé.");
+        $album = $algt->searchByName($titre['nomAlbum']);
+        if($album==null)
+            throw new Exception("L'album n'a pas pu être trouvé.");
         $avis = $avgt->search($idTitre);
+
         $nbAvisF = $avgt->countByTitreByavis($titre['idTitre'],"favorable");
         $nbAvisI = $avgt->countByTitreByavis($titre['idTitre'],"indifférent");
         $nbAvisD = $avgt->countByTitreByavis($titre['idTitre'],"défavorable");
+
 
         $res = array(
             "nomTitre" => $titre['nomTitre'],
@@ -121,6 +127,6 @@ class ModelVisitor
             "couv" => $album['couverture'],
             "comm" => $avis
         );
-
+        return $res;
     }
 }

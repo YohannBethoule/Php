@@ -54,6 +54,7 @@ class TitreGateway
             ':id'=>array($id, PDO::PARAM_INT)
         ));
         $titre=$this->con->getResults();
+        $titre = $titre[0];
         return $titre;
     }
 

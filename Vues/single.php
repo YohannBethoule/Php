@@ -21,18 +21,19 @@ require_once('\templates\head.php');
 <!-- /w3layouts-agile -->
 <body class="sticky-header left-side-collapsed">
 
-<input type="hidden" name="action" value="detailTitre"/>
 
 <section>
-
     <!--mise en page-->
     <?php
-    global $rep;
     require_once('\templates\header.php');
     require_once('\templates\navbar.php');
     require_once('\templates\footer.php');
 
+    require_once('..\index.php');
 
+    ?>
+
+    <?php
     if(isset($res)){
         echo "<p>".$res['nomTitre']."</p>";
         echo "<p>".$res['duree']."</p>";
@@ -43,13 +44,18 @@ require_once('\templates\head.php');
         echo "<p>".$res['dateFin']."</p>";
         echo "<p>".$res['artiste']."</p>";
         echo "<p>".$res['parution']."</p>";
-        echo "<p>".$res['couv']."</p>";
-        echo "<p>".$res['comm'][3]."</p>";
-        echo "<p>".$res['comm'][2]."</p>";
-        echo "<p>".$res['comm'][1]."</p>";
+        echo "<p><img src=".$res['couv']."></p>";
+        if(isset($res['comm'])){
+            foreach($res['comm'] as $row){
+                echo "<p>".$row['note']."</p>";
+                echo "<p>".$row['commentaire']."</p>";
+                echo "<p>".$row['user']."</p>";
+            }
+        }
     }
+
+
     ?>
-    <!--//mise en page-->
 
 </section>
 
