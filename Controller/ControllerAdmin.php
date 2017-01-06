@@ -62,6 +62,13 @@ class ControllerAdmin extends ControllerUser
     }
 
     function supprimerCommentaire(){
+        global $vues;
+        $idAvis = $_POST['idAvis'];
+        $idAvis=Nettoyer::nettoyer_int($idAvis);
+        if(ModelAdmin::supprimerCommentaire($idAvis))
+            header("Refresh:0");
+        else
+            throw new Exception("Le commentaire n'a pas pu être supprimé.");
 
     }
 

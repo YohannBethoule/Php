@@ -45,7 +45,8 @@
                                 echo "<a href=\"Vues/Connection.php\" id=\"loginButton\"><span>Login <i class=\"arrow glyphicon glyphicon-chevron-right\"></i></span></a><a class=\"top-sign\" href=\"#\" data-toggle=\"modal\" data-target=\"#myModal5\"><i class=\"fa fa-sign-in\"></i></a>";
                             }
                             else{
-                                echo "Session!";
+                                echo $_SESSION['login'];
+                                echo "<a href=\"?action=seDeconnecter\" id=\"deconnexionButton\"><span>Déconnexion<i class='arrow glyphicon glyphicon-log-out'></i></span></a>";
                             }
                         ?>
                     </div>

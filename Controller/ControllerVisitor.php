@@ -55,6 +55,7 @@ class ControllerVisitor
     function consulterTitres(){
         global $vues;
         try{
+            //header("Location:/Php/Vues/browse.php");
             $res=ModelVisitor::TousLesTitres();
             usort($res,function($a,$b){
                 if($a['avisF']==$b['avisF']) return 0;
@@ -73,7 +74,6 @@ class ControllerVisitor
             $idTitre = $_GET['idT'];
             $idTitre = Nettoyer::nettoyer_int($idTitre);
             $res = ModelVisitor::detailTitre($idTitre);
-            //var_dump($res);
             require_once($vues['detail']);
         } catch (Exception $e){
             $dVueErreur[]= $e->getMessage();

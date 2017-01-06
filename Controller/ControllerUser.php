@@ -65,7 +65,14 @@ class ControllerUser extends ControllerVisitor
     }
 
     function seDeconnecter(){
+        global $vues;
         session_unset();
+        if(isset($_SESSION['login'])){
+            throw new Exception("La déconnexion n'a pas réussie.");
+        }
+        else
+            header("Location:/Php");
+            header("Refresh:0");
     }
 
     function donnerAvis(){

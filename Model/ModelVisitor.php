@@ -33,33 +33,11 @@ class ModelVisitor
         return $results;
     }
 
-    public static function NbAvisFavFromTitres($tabtitre){
+    public static function NbAvisFromTitres($tabtitre,$note){
         global $bpassword, $blogin, $base;
         $gt = new AvisGateway(new Connexion($base, $blogin, $bpassword));
         foreach ($tabtitre as $titre) {
-            $res[] = $gt->countByTitreByAvis($titre['idTitre'],"favorable");
-        }
-        if ($res == null)
-            throw new Exception("Aucune couveture trouvée.");
-        return $res;
-    }
-
-    public static function NbAvisIndiffFromTitres($tabtitre){
-        global $bpassword, $blogin, $base;
-        $gt = new AvisGateway(new Connexion($base, $blogin, $bpassword));
-        foreach ($tabtitre as $titre) {
-            $res[] = $gt->countByTitreByAvis($titre['nomTitre'],'indifférent');
-        }
-        if ($res == null)
-            throw new Exception("Aucune couveture trouvée.");
-        return $res;
-    }
-
-    public static function NBAvisDefavFromTitres($tabtitre){
-        global $bpassword, $blogin, $base;
-        $gt = new AvisGateway(new Connexion($base, $blogin, $bpassword));
-        foreach ($tabtitre as $titre) {
-            $res[] = $gt->countByTitreByAvis($titre['nomTitre'],'défavorable');
+            $res[] = $gt->countByTitreByAvis($titre['idTitre'],$note);
         }
         if ($res == null)
             throw new Exception("Aucune couveture trouvée.");
@@ -74,9 +52,9 @@ class ModelVisitor
         $avgt = new AvisGateway($con);
         $titres=$tigt->getAll();
         $couvs=self::couverturesFromTitres($titres);
-        $avisF=self::NbAvisFavFromTitres($titres);
-        $avisI=self::NbAvisIndiffFromTitres($titres);
-        $avisD=self::NBAvisDefavFromTitres($titres);
+        $avisF=self::NbAvisFromTitres($titres,"favorable");
+        $avisI=self::NbAvisFromTitres($titres,"indifferent");
+        $avisD=self::NBAvisFromTitres($titres,"defavorable");
         $i=0;
         foreach ($titres as $row){
             $res[] = array(
@@ -110,8 +88,8 @@ class ModelVisitor
         $avis = $avgt->search($idTitre);
 
         $nbAvisF = $avgt->countByTitreByavis($titre['idTitre'],"favorable");
-        $nbAvisI = $avgt->countByTitreByavis($titre['idTitre'],"indifférent");
-        $nbAvisD = $avgt->countByTitreByavis($titre['idTitre'],"défavorable");
+        $nbAvisI = $avgt->countByTitreByavis($titre['idTitre'],"indifferent");
+        $nbAvisD = $avgt->countByTitreByavis($titre['idTitre'],"defavorable");
 
 
         $res = array(

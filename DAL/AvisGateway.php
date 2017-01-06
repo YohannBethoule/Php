@@ -27,17 +27,26 @@ class avisGateway
         ));
     }
 
-    public function delete($idTitre){
-        $query= 'DELETE FROM avis WHERE idAvis=:idTitre';
+    public function delete($idAvis){
+        $query= 'DELETE FROM avis WHERE idAvis=:idAvis';
         $this->con->executeQuery($query, array(
-            ':idTitre' => array($idTitre, PDO::PARAM_INT)
+            ':idAvis' => array($idAvis, PDO::PARAM_INT)
         ));
     }
 
     public function search($idTitre){
-        $query='SELECT * FROM avis WHERE idAvis=:idTitre';
+        $query='SELECT * FROM avis WHERE idTitre=:idTitre';
         $this->con->executeQuery($query, array(
             ':idTitre'=>array($idTitre, PDO::PARAM_INT)
+        ));
+        $avis=$this->con->getResults();
+        return $avis;
+    }
+
+    public function searchById($idAvis){
+        $query='SELECT * FROM avis WHERE idAvis=:idAvis';
+        $this->con->executeQuery($query, array(
+            ':idAvis'=>array($idAvis, PDO::PARAM_INT)
         ));
         $avis=$this->con->getResults();
         return $avis;
@@ -59,6 +68,7 @@ class avisGateway
             ':note'=>array($note,PDO::PARAM_STR)
         ));
         $results=$this->con->getResults();
+        //var_dump($results);
         return count($results);
     }
 
