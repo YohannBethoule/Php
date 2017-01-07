@@ -10,7 +10,7 @@ class ControllerUser extends ControllerVisitor
 {
     function __construct($action)
     {
-        global $vues;
+        global $rep,$vues;
         $dVueEreur = array ();
 
         try {
@@ -27,65 +27,46 @@ class ControllerUser extends ControllerVisitor
                     $this->seDeconnecter();
                     break;
 
-                case "donnerAvis":
-                    $this->donnerAvis();
-                    break;
-
                 default:
                     $dVueEreur = "Erreur d'appel php.";
-                    require($vues['erreur']);
+                    require($rep.$vues['erreur']);
             }
         }
         catch (PDOException $e)
         {
             //si erreur BD, pas le cas ici
             $dVueEreur[] =	"Erreur inattendue!!! ";
-            require ($vues['erreur']);
+            require ($rep.$vues['erreur']);
         }
 
         catch (Exception $e2)
         {
             $dVueEreur[] =	"Erreur inattendue!!! ";
-            require ($vues['erreur']);
+            require ($rep.$vues['erreur']);
         }
         exit(0);
     }
 
     function seConnecter()
     {
-        global $vues;
+        global $rep,$vues;
         $login = $_POST['login'];
         $password = $_POST['password'];
-        $res = ModelUser::connexion($login, $password);
-        if (is_bool($res)) {
+        $co = ModelUser::connexion($login, $password);
+        if (is_bool($co)) {
             header("Refresh:0");
         } else {
-            require_once($vues['connexion']);
+            require_once($rep.$vues['connexion']);
         }
     }
 
     function seDeconnecter(){
-        global $vues;
         session_unset();
         if(isset($_SESSION['login'])){
             throw new Exception("La déconnexion n'a pas réussie.");
         }
         else
             header("Location:/Php");
-            header("Refresh:0");
     }
 
-    function donnerAvis(){
-        global $vues;
-        $note = $_POST['note'];
-        $commentaire = $_POST['commentaire'];
-        if(isset($_SESSION['login']))
-            $user = $_SESSION['login'];
-        else
-            throw  new Exception("Votre session n'est pas reconnue.");
-        $idTitre = $_GET['idT'];
-
-        if(ModelUser::insererCommentaire($note,$commentaire,$user,$idTitre))
-            header("Refresh:0");
-    }
 }

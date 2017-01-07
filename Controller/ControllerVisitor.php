@@ -13,7 +13,7 @@ class ControllerVisitor
 
     function __construct($action)
     {
-        global $vues;
+        global $rep,$vues;
         $dVueErreur = array ();
 
         try {
@@ -30,22 +30,30 @@ class ControllerVisitor
                     $this->afficherCommentaires();
                     break;
 
+                case "nouveauCommentaire":
+                    $this->nouveauCommentaire();
+                    break;
+
+                case "ajouterCommentaire":
+                    $this->ajouterCommentaire();
+                    break;
+
                 default:
                     $dVueErreur = "Erreur d'appel php.";
-                    require($vues['erreur']);
+                    require($rep.$vues['erreur']);
             }
         }
         catch (PDOException $e)
         {
             //si erreur BD, pas le cas ici
             $dVueErreur[] =	"Erreur inattendue!!! ";
-            require ($vues['erreur']);
+            require ($rep.$vues['erreur']);
         }
 
         catch (Exception $e2)
 	    {
             $dVueErreur[] =	"Erreur inattendue!!! ";
-            require ($vues['erreur']);
+            require ($rep.$vues['erreur']);
         }
 
         exit(0);
@@ -53,36 +61,52 @@ class ControllerVisitor
 
 
     function consulterTitres(){
-        global $vues;
+        global $rep,$vues;
         try{
-            //header("Location:/Php/Vues/browse.php");
             $res=ModelVisitor::TousLesTitres();
             usort($res,function($a,$b){
                 if($a['avisF']==$b['avisF']) return 0;
                 return $a['avisF'] < $b['avisF']?1:-1;
             });
-            require_once($vues['recherche']);
+            require_once($rep.$vues['recherche']);
         }catch (Exception $e){
             $dVueErreur[]=$e->getMessage();
-            require_once($vues['erreur']);
+            require_once($rep.$vues['erreur']);
         }
     }
 
     function detailTitre(){
-        global $vues;
+        global $rep,$vues;
         try {
             $idTitre = $_GET['idT'];
             $idTitre = Nettoyer::nettoyer_int($idTitre);
-            $res = ModelVisitor::detailTitre($idTitre);
-            require_once($vues['detail']);
+            $resSingle = ModelVisitor::detailTitre($idTitre);
+            require_once($rep.$vues['detail']);
         } catch (Exception $e){
-            $dVueErreur[]= $e->getMessage();
-            require_once($vues['erreur']);
+            $dVueErreur= $e->getMessage();
+            require_once($rep.$vues['erreur']);
         }
     }
 
     function afficherCommentaires(){
-        global $vues;
+        global $rep,$vues;
 
     }
+
+    function nouveauCommentaire(){
+        global $rep,$vues;
+        require_once($rep.$vues['commentaire']);
+    }
+
+    function ajouterCommentaire(){
+        global $rep,$vues;
+        $idTitre=$_POST['idTitre'];
+        settype($idTitre,'integer');
+        $login=Nettoyer::nettoyer_string($_POST['pseudo']);
+        $note=Validation::validNote($_POST['note']);
+        $commentaire=Nettoyer::nettoyer_string($_POST['commentaire']);
+        ModelVisitor::insererCommentaire($note,$commentaire,$login,$idTitre);
+        header("Location:/Php/");
+    }
+
 }

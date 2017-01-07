@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 04 Janvier 2017 à 19:21
+-- Généré le :  Sam 07 Janvier 2017 à 17:44
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -62,8 +62,12 @@ CREATE TABLE `avis` (
 
 INSERT INTO `avis` (`idAvis`, `note`, `commentaire`, `user`, `idTitre`) VALUES
 (1, 'favorable', 'Ce titre est intéressant.', 'sabussy', 1),
-(2, 'favorable', 'gdfsdq', 'sabussy', 3),
-(3, 'favorable', 'zefdv', 'michel', 3);
+(4, 'indifférent', 'jlkergjh', 'sabussy', 2),
+(3, 'favorable', 'zefdv', 'michel', 3),
+(6, 'défavorable', 'azegre', 'sabussy', 2),
+(7, 'favorable', 'regrfzd', 'michel', 3),
+(8, 'indifférent', 'zefds', 'sabussy', 1),
+(9, 'défavorable', 'azefrge', 'michel', 3);
 
 -- --------------------------------------------------------
 
@@ -88,7 +92,7 @@ CREATE TABLE `titre` (
 INSERT INTO `titre` (`idTitre`, `nomTitre`, `artiste`, `nomAlbum`, `date_debut`, `date_fin`, `duree`) VALUES
 (1, '24K Magic', 'Bruno Mars', '24K Magic', '2016-11-18', '2017-02-18', 227),
 (2, 'Chunky', 'Bruno Mars', '24K Magic', '2016-11-18', '2017-02-18', 187),
-(3, 'Perm', 'Bruno Mars', '24K Magic', '2016-11-18', '2017-02-18', 211);
+(3, 'Perm', 'Bruno Mars', '24K Magic', '2016-11-18', '2017-02-18', 222);
 
 -- --------------------------------------------------------
 
@@ -155,7 +159,7 @@ ALTER TABLE `album`
 -- AUTO_INCREMENT pour la table `avis`
 --
 ALTER TABLE `avis`
-  MODIFY `idAvis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idAvis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT pour la table `titre`
 --

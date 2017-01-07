@@ -27,18 +27,18 @@ class TitreGateway
     }
 
 
-    public function update($id,$nomTitre,$artiste,$dateFin,$cheminCouv,$duree)
+    public function update($id,$nomTitre,$artiste,$nomAlbum,$dateDebut,$dateFin,$duree)
     {
-        $query = 'UPDATE titre SET nomTitre=:nomTitre, artiste=:artiste, date_fin=:dateFin WHERE idTitre=:id';
+        $query = 'UPDATE titre SET nomTitre=:nomTitre, artiste=:artiste, nomAlbum=:nomAlbum, date_debut=:dateDebut, date_fin=:dateFin, duree=:duree WHERE idTitre=:id';
         $this->con->executeQuery($query, array(
             ':id' => array($id, PDO::PARAM_INT),
             ':nomTitre' => array($nomTitre, PDO::PARAM_STR),
             ':artiste' => array($artiste, PDO::PARAM_STR),
+            ':nomAlbum' => array($nomAlbum, PDO::PARAM_STR),
+            ':dateDebut' => array($dateDebut, PDO::PARAM_STR),
             ':dateFin' => array($dateFin, PDO::PARAM_STR),
-            ':cheminCouv' => array($cheminCouv, PDO::PARAM_STR),
             ':duree' => array($duree,PDO::PARAM_STR)
         ));
-
     }
 
     public function delete($id){

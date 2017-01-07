@@ -31,17 +31,18 @@ require_once('\templates\head.php');
 
     <span style="text-align: center">
         <?php
-        if(isset($res)){
-            echo "<p> Nom du titre : ".$res['nomTitre']."</p>";
-            echo "<p> Durée d'écoute : ".$res['duree']." secondes</p>";
-            echo "<p> Avis Favorables : ".$res['nbAvisF']."</p>";
-            echo "<p> Avis Indifférents : ".$res['nbAvisI']."</p>";
-            echo "<p> Avis Défavorables : ".$res['nbAvisD']."</p>";
-            echo "<p> Période de mise en ligne : ".$res['dateDebut']." - ".$res['dateFin']."</p>";
-            echo "<p> Nom de l'artise :".$res['artiste']."</p>";
-            echo "<p> Date de parution :".$res['parution']."</p>";
-            echo "<p><img width='100px' height='100px' src=".$res['couv']."></p>";
-            if(isset($res['comm'])){
+        if(isset($resSingle)){
+            echo "<p> Nom du titre : ".$resSingle['nomTitre']."</p>";
+            echo "<p> Durée d'écoute : ".$resSingle['duree']." secondes</p>";
+            echo "<p> Avis Favorables : ".$resSingle['nbAvisF']."</p>";
+            echo "<p> Avis Indifférents : ".$resSingle['nbAvisI']."</p>";
+            echo "<p> Avis Défavorables : ".$resSingle['nbAvisD']."</p>";
+            echo "<p> Période de mise en ligne : ".$resSingle['dateDebut']." - ".$resSingle['dateFin']."</p>";
+            echo "<p> Nom de l'artise :".$resSingle['artiste']."</p>";
+            echo "<p> Date de parution :".$resSingle['parution']."</p>";
+            echo "<p><a href=\"?idTitre=".$resSingle['idTitre']."&action=nouveauCommentaire\">Ajouter un commentaire</a></p>";
+            echo "<p><img width='100px' height='100px' src=".$resSingle['couv']."></p>";
+            if(isset($resSingle['comm'])){
         ?>
         <table width="500px" align="center">
             <tr>
@@ -54,7 +55,7 @@ require_once('\templates\head.php');
                 ?>
             </tr>
                 <?php
-                foreach ($res['comm'] as $row) {
+                foreach ($resSingle['comm'] as $row) {
                     echo "<tr>";
                     echo "<th >" . $row['note'] . "</th>";
                     echo "<th style=\"text-align: center\">" . $row['commentaire'] . "</th>";
@@ -69,6 +70,9 @@ require_once('\templates\head.php');
                     echo "</tr>";
                 }
             }
+            else{
+                    echo "<h2>Erreur d'appel dans la page single.php</h2>";
+                }
         }
         ?>
         </table>

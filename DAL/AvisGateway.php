@@ -68,17 +68,25 @@ class avisGateway
             ':note'=>array($note,PDO::PARAM_STR)
         ));
         $results=$this->con->getResults();
-        //var_dump($results);
         return count($results);
     }
 
-    public function searchAncienByTitre($idTitre){
-        $query='SELECT * FROM avis WHERE idTitre=:idTitre AND MIN(idAvis)';
+    public function countByTitre($idTitre){
+        $query='SELECT * FROM avis WHERE idTitre=:idTitre';
         $this->con->executeQuery($query, array(
             ':idTitre'=>array($idTitre, PDO::PARAM_STR)
         ));
         $results=$this->con->getResults();
-        return $results;
+        return count($results);
+    }
+
+    public function searchAncienByTitre($idTitre){
+        $query='SELECT MIN(idAvis) FROM avis WHERE idTitre=:idTitre';
+        $this->con->executeQuery($query, array(
+            ':idTitre'=>array($idTitre, PDO::PARAM_STR)
+        ));
+        $results=$this->con->getResults();
+        return $results[0][0];
     }
 
 }

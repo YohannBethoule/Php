@@ -9,8 +9,11 @@
 class Nettoyer
 {
     static function nettoyer_string($string){
-        if(isset($string)){
-            return filter_var($string,FILTER_SANITIZE_STRING);
+        if(isset($string)) {
+            $string = filter_var($string, FILTER_SANITIZE_STRING);
+            if(empty($string))
+                throw new Exception("Un champs de saisie était vide ou non conforme.");
+            return $string;
         }
         throw new Exception("Paramètre passé pour le nettoyage n'est pas initialisé.");
     }

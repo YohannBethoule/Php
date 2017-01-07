@@ -1,10 +1,10 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: yoyot
- * Date: 07/12/2016
- * Time: 19:25
- */
+* Created by PhpStorm.
+* User: yoyot
+* Date: 07/12/2016
+* Time: 19:25
+*/
 
 ?>
 
@@ -26,10 +26,8 @@ require_once('\templates\head.php');
 <section>
 
     <?php
-    global $rep;
     require_once('\templates\header.php');
     require_once('\templates\footer.php');
-    require_once('\index.php');
     ?>
 
     <h2 class="sub-header">Nos titres</h2>
@@ -44,6 +42,11 @@ require_once('\templates\head.php');
                 <th>Nb indifférents</th>
                 <th>Nb défavorables</th>
                 <th>+ d'Infos</th>
+                <?php
+                if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
+                    echo "<th>Gestion titre</th>";
+                }
+                ?>
             </tr>
             </thead>
             <tbody>
@@ -59,8 +62,16 @@ require_once('\templates\head.php');
                     echo "<td>" . $row['avisI'] . "</td>";
                     echo "<td>" . $row['avisD'] . "</td>";
                     echo "<td> <a href=\"?idT=" . $row['idTitre'] . "&action=detailTitre\">+</a></td>";
+                    if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
+                        echo "<th><a href=\"?idTitre=".$row['idTitre']."&action=afficherTitre\">Modifier</a>
+                                    <a href=\"?idTitre=".$row['idTitre']."&action=supprimerTitre\">Supprimer</a></th>";
+                    }
                     echo "</tr>";
                 }
+            }
+            else
+            {
+                echo "<h2>Erreur d'appel dans la page browse.php</h2>";
             }
             ?>
             </tbody>

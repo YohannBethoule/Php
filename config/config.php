@@ -9,7 +9,6 @@
 
 $rep=__DIR__.'/../';
 
-
 //BD
 
 $base="mysql:host=localhost;dbname=musique";
@@ -19,9 +18,11 @@ $bpassword="root";
 
 //Vues
 
-$vues['erreur']=$rep.'Vues/404.php';
-$vues['connexion']=$rep.'Vues/Connection.php';
-$vues['recherche']=$rep.'Vues/browse.php';
-$vues['detail']=$rep.'Vues/single.php';
+$vues['erreur']='Vues/404.php';
+$vues['connexion']='Vues/Connection.php';
+$vues['recherche']='Vues/browse.php';
+$vues['detail']='Vues/single.php';
+$vues['titre']='Vues/vueTitre.php';
+$vues['commentaire']='Vues/vueCommentaire.php';
 
 ?>

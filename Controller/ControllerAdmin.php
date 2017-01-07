@@ -10,7 +10,7 @@ class ControllerAdmin extends ControllerUser
 {
     function __construct($action)
     {
-
+        global $rep,$vues;
         try{
             switch($action){
                 case null:
@@ -21,8 +21,16 @@ class ControllerAdmin extends ControllerUser
                     $this->ajouterTitre();
                     break;
 
+                case "nouveauTitre":
+                    $this->nouveauTitre();
+                    break;
+
                 case "supprimerTitre":
                     $this->supprimerTitre();
+                    break;
+
+                case "afficherTitre":
+                    $this->afficherTitre();
                     break;
 
                 case "modifierTitre":
@@ -50,14 +58,48 @@ class ControllerAdmin extends ControllerUser
     }
 
     function ajouterTitre() {
+        global $rep,$vues;
+        $nomTitre = Nettoyer::nettoyer_string($_POST['nomTitre']);
+        $artiste = Nettoyer::nettoyer_string($_POST['artiste']);
+        $nomAlbum = Nettoyer::nettoyer_string($_POST['nomAlbum']);
+        $date_debut = Nettoyer::nettoyer_string($_POST['date_debut']);
+        $date_fin = Nettoyer::nettoyer_string($_POST['date_fin']);
+        $duree = Nettoyer::nettoyer_int($_POST['duree']);
+        ModelAdmin::ajouterTitre($nomTitre,$artiste,$nomAlbum,$date_debut,$date_fin,$duree);
+        header("Location:/Php/");
+    }
 
+    function nouveauTitre(){
+        global $rep,$vues;
+        require_once ($rep.$vues['titre']);
     }
 
     function supprimerTitre() {
+        global $rep,$vues;
+        $idTitre=Nettoyer::nettoyer_int($_GET['idTitre']);
+        ModelAdmin::supprimerTitre($idTitre);
+        header("Location:/Php/");
+    }
 
+    function afficherTitre(){
+        global $rep,$vues;
+        $idTitre=Nettoyer::nettoyer_int($_GET['idTitre']);
+        $resTitre=ModelAdmin::afficherTitre($idTitre);
+        require_once ($rep.$vues['titre']);
     }
 
     function modifierTitre(){
+        global $rep,$vues;
+            $idTitre = Nettoyer::nettoyer_int($_POST['idTitre']);
+            $nomTitre = Nettoyer::nettoyer_string($_POST['nomTitre']);
+            $artiste = Nettoyer::nettoyer_string($_POST['artiste']);
+            $nomAlbum = Nettoyer::nettoyer_string($_POST['nomAlbum']);
+            $date_debut = Nettoyer::nettoyer_string($_POST['date_debut']);
+            $date_fin = Nettoyer::nettoyer_string($_POST['date_fin']);
+            $duree = Nettoyer::nettoyer_int($_POST['duree']);
+
+            ModelAdmin::modifierTitre($idTitre,$nomTitre,$artiste,$nomAlbum,$date_debut,$date_fin,$duree);
+        header("Location:/Php/");
 
     }
 

@@ -41,7 +41,7 @@ class Validation
     }
 
     static function validNote($note){
-        $listeNotes = array("favorable","indifférent","défavorable");
+        $listeNotes = array("favorable","indifferent","defavorable");
         if(isset($note)) {
             if (in_array($note, $listeNotes))
                 return $note;

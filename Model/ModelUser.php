@@ -8,20 +8,6 @@
  */
 class ModelUser
 {
-    public static function isAdmin(){
-        global $bpassword, $blogin, $base;
-        if(isset($_SESSION['login']) && isset ($_SESSION['role'])){
-            $login=Nettoyer::nettoyer_string($_SESSION['login']);
-            $role=Nettoyer::nettoyer_string($_SESSION['role']);
-            $gt = new UserGateway(new Connexion($base, $blogin, $bpassword));
-            $user= $gt->search($login);
-            if ($login == $user['pseudo'] && $user['role'] == 'admin') {
-                return $user;
-            }
-        }
-        return null;
-    }
-
     public static function isUser(){
         global $bpassword, $blogin, $base;
         if(isset($_SESSION['login']) && isset ($_SESSION['role'])){
@@ -30,10 +16,10 @@ class ModelUser
             $gt = new UserGateway(new Connexion($base, $blogin, $bpassword));
             $user= $gt->search($login);
             if($login==$user['pseudo'] && $user['role']=='user'){
-                return $user;
+                return true;
             }
             else{
-                return null;
+                return false;
             }
         }
         else
@@ -71,28 +57,5 @@ class ModelUser
         session_unset();
     }
 
-    public static function insererCommentaire($note,$commentaire,$user,$idTitre){
-        global $blogin,$bpassword,$base;
-        Validation::validNote($note);
-        $commentaire=Nettoyer::nettoyer_string($commentaire);
-        $user=Nettoyer::nettoyer_string($user);
-        $idTitre=Nettoyer::nettoyer_int($idTitre);
 
-        $gt=new AvisGateway(new Connexion($base,$blogin,$bpassword));
-        $comments=$gt->searchByTitre();
-        if(count($comments)>=3){
-            $idsuprr=$gt->searchAncienByTitre($idTitre);
-            if(isset($idsuprr)){
-                $gt->delete($idsuprr);
-                $gt->insert($note,$commentaire,$user,$idTitre);
-            }
-            else{
-                throw new Exception("Impossible de trouver le plus ancien commentaire à remplacer.");
-            }
-        }
-        else{
-            $gt->insert($note,$commentaire,$user,$idTitre);
-        }
-        return true;
-    }
 }
