@@ -1,13 +1,13 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: yoyot
- * Date: 07/12/2016
- * Time: 19:14
+ * User: yobethoule
+ * Date: 06/01/17
+ * Time: 12:42
  */
 
 ?>
 
 <footer>
-    <p>Site web crée par Yohann Bethoule et Samuel Bussy, G3, 2016</p>
+    <p>Site Web réalisé par Samuel Bussy et Yohann Bethoule, IUT Informatique Clermont-Ferrand, 2016-2017</p>
 </footer>

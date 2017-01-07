@@ -26,11 +26,7 @@ require_once('\templates\head.php');
     <!--mise en page-->
     <?php
     require_once('\templates\header.php');
-    require_once('\templates\navbar.php');
     require_once('\templates\footer.php');
-
-    require_once('\index.php');
-
     ?>
 
     <span style="text-align: center">

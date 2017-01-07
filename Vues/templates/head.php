@@ -1,19 +1,30 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: yoyot
- * Date: 14/12/2016
- * Time: 15:08
+ * User: yobethoule
+ * Date: 06/01/17
+ * Time: 12:48
+ *
+ * Contient le head de notre site
  */
+
 ?>
 
 <head>
-    <title>Mosaic</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="/Php/Vues/css/bootstrap.css" rel='stylesheet' type='text/css' />
-    <link href="/Php/Vues/css/style.css" rel='stylesheet' type='text/css' />
-    <link href="/Php/Vues/css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" href="/Php/Vues/css/icon-font.css" type='text/css' />
-    <link rel="stylesheet" type="text/css" media="all" href="/Php/Vues/css/audio.css"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Muses-Hic</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="Vues/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="Vues/css/dashboard.css" rel="stylesheet">
+
 </head>

@@ -28,16 +28,16 @@ require_once('\templates\head.php');
     <?php
     global $rep;
     require_once('\templates\header.php');
-    require_once('\templates\navbar.php');
     require_once('\templates\footer.php');
     require_once('\index.php');
     ?>
 
-
-    <div class="table table-responsive  pricing-table">
-        <table>
+    <h2 class="sub-header">Nos titres</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
             <tr>
-                <th>Nom</th>
+                <td>Nom</th>
                 <th>Couverture</th>
                 <th>Période de mise en ligne</th>
                 <th>Nb favorables</th>
@@ -45,22 +45,25 @@ require_once('\templates\head.php');
                 <th>Nb défavorables</th>
                 <th>+ d'Infos</th>
             </tr>
+            </thead>
+            <tbody>
             <?php
-                if(isset($res)) {
-                    //var_dump($res);
-                    foreach ($res as $row) {
-                        echo "<tr>";
-                        echo "<th>" . $row['titre'] . "</th>";
-                        echo "<th><img width='100px' height='100px' src=" . $row['couverture'] . "></th>";
-                        echo "<th>" . $row['date_debut'] . "--" . $row['date_fin'] . "</th>";
-                        echo "<th>" . $row['avisF'] . "</th>";
-                        echo "<th>" . $row['avisI'] . "</th>";
-                        echo "<th>" . $row['avisD'] . "</th>";
-                        echo "<th> <a href=\"?idT=" . $row['idTitre'] . "&action=detailTitre\">+</a></th>";
-                        echo "</tr>";
-                    }
+            if(isset($res)) {
+                //var_dump($res);
+                foreach ($res as $row) {
+                    echo "<tr>";
+                    echo "<td>" . $row['titre'] . "</td>";
+                    echo "<td><img widtd='100px' height='100px' src=" . $row['couverture'] . "></td>";
+                    echo "<td>" . $row['date_debut'] . "--" . $row['date_fin'] . "</td>";
+                    echo "<td>" . $row['avisF'] . "</td>";
+                    echo "<td>" . $row['avisI'] . "</td>";
+                    echo "<td>" . $row['avisD'] . "</td>";
+                    echo "<td> <a href=\"?idT=" . $row['idTitre'] . "&action=detailTitre\">+</a></td>";
+                    echo "</tr>";
                 }
+            }
             ?>
+            </tbody>
         </table>
     </div>
 

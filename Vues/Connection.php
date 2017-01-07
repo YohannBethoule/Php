@@ -10,7 +10,6 @@ require_once('\templates\head.php');
         <section>
             <?php
             require_once('\templates\header.php');
-            require_once('\templates\navbar.php');
             require_once('\templates\footer.php');
             ?>
             <div class="connection_form main-content center-block text-center">

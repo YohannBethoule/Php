@@ -26,7 +26,6 @@ require('\templates\head.php');
 <section>
 
     <?php require ('\templates\header.php');
-    require('\templates\navbar.php');
     require('\templates\footer.php');
     ?>
 
