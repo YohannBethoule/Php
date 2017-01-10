@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 07 Janvier 2017 à 17:44
+-- Généré le :  Mar 10 Janvier 2017 à 18:52
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -50,7 +50,7 @@ INSERT INTO `album` (`idAlbum`, `nomAlbum`, `artiste`, `parution`, `description`
 
 CREATE TABLE `avis` (
   `idAvis` int(11) NOT NULL,
-  `note` enum('favorable','indifférent','défavorable') COLLATE utf8_unicode_ci NOT NULL,
+  `note` enum('favorable','indifferent','defavorable') COLLATE utf8_unicode_ci NOT NULL,
   `commentaire` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `user` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `idTitre` int(11) NOT NULL
@@ -61,13 +61,13 @@ CREATE TABLE `avis` (
 --
 
 INSERT INTO `avis` (`idAvis`, `note`, `commentaire`, `user`, `idTitre`) VALUES
-(1, 'favorable', 'Ce titre est intéressant.', 'sabussy', 1),
-(4, 'indifférent', 'jlkergjh', 'sabussy', 2),
-(3, 'favorable', 'zefdv', 'michel', 3),
-(6, 'défavorable', 'azegre', 'sabussy', 2),
+(18, 'favorable', 'Bien !', 'Bernard', 1),
+(4, 'indifferent', 'jlkergjh', 'sabussy', 2),
+(6, 'defavorable', 'azegre', 'sabussy', 2),
 (7, 'favorable', 'regrfzd', 'michel', 3),
-(8, 'indifférent', 'zefds', 'sabussy', 1),
-(9, 'défavorable', 'azefrge', 'michel', 3);
+(19, 'favorable', 'bzanlzeflkfzel', 'Olivier', 1),
+(9, 'defavorable', 'azefrge', 'michel', 3),
+(20, 'indifferent', 'azeaze', 'azefr', 1);
 
 -- --------------------------------------------------------
 
@@ -91,8 +91,8 @@ CREATE TABLE `titre` (
 
 INSERT INTO `titre` (`idTitre`, `nomTitre`, `artiste`, `nomAlbum`, `date_debut`, `date_fin`, `duree`) VALUES
 (1, '24K Magic', 'Bruno Mars', '24K Magic', '2016-11-18', '2017-02-18', 227),
-(2, 'Chunky', 'Bruno Mars', '24K Magic', '2016-11-18', '2017-02-18', 187),
-(3, 'Perm', 'Bruno Mars', '24K Magic', '2016-11-18', '2017-02-18', 222);
+(3, 'Perm', 'Bruno Mars', '24K Magic', '2016-11-18', '2017-02-18', 222),
+(2, 'Chunky', 'Bruno Mars', '24K Magic', '2016-11-18', '2017-02-18', 187);
 
 -- --------------------------------------------------------
 
@@ -159,7 +159,7 @@ ALTER TABLE `album`
 -- AUTO_INCREMENT pour la table `avis`
 --
 ALTER TABLE `avis`
-  MODIFY `idAvis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idAvis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT pour la table `titre`
 --

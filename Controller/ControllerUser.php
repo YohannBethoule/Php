@@ -22,6 +22,10 @@ class ControllerUser extends ControllerVisitor
                     $this->consulterTitres();
                     break;
 
+                case "connexion":
+                    $this->connexion();
+                    break;
+
                 case "seConnecter":
                     $this->seConnecter();
                     break;
@@ -50,14 +54,20 @@ class ControllerUser extends ControllerVisitor
         exit(0);
     }
 
+    //appel de la page de connexion du site
+    function connexion(){
+        global $rep,$vues;
+        require_once($vues['connexion']);
+    }
+
     //appel de la méthode de connexion au site
     function seConnecter()
     {
         global $rep,$vues;
         $login = $_POST['login'];
         $password = $_POST['password'];
-        $co = ModelUser::connexion($login, $password);
-        if (is_bool($co)) {
+        $res = ModelUser::connexion($login, $password);
+        if (is_bool($res)) {
             header("Refresh:0");
         } else {
             require_once($rep.$vues['connexion']);

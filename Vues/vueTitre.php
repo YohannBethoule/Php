@@ -14,14 +14,12 @@
     ?>
 
 
-    <body class="sticky-header left-side-collapsed">
+    <body class="sticky-header left-side-collapsed"">
         <section>
 
             <?php
                 require_once('\templates\header.php');
-                require_once('\templates\navbar.php');
                 require_once('\templates\footer.php');
-                /*require_once(dirname(dirname(__FILE__)).'/index.php');*/
 
                 if(isset($err)) {
                     echo "<p style='color: #ac2925'>$err</p>";

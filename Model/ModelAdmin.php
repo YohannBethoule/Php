@@ -49,8 +49,8 @@ class ModelAdmin
     public static function modifierTitre($idT,$nomT,$artiste,$nomAlbum,$date_debut,$date_fin,$duree){
         global $bpassword, $blogin, $base;
         if(self::isAdmin()){
-            $avgt = new TitreGateway(new Connexion($base, $blogin, $bpassword));
-            $avgt->update($idT,$nomT,$artiste,$nomAlbum,$date_debut,$date_fin,$duree);
+            $tgt = new TitreGateway(new Connexion($base, $blogin, $bpassword));
+            $tgt->update($idT,$nomT,$artiste,$nomAlbum,$date_debut,$date_fin,$duree);
         }
         else
             throw new Exception("Le compte n'est pas reconnu comme étant un compte utilisateur.");
@@ -60,9 +60,11 @@ class ModelAdmin
     public static function supprimerTitre($idTitre){
         global $bpassword, $blogin, $base;
         if(self::isAdmin()){
-            $avgt = new TitreGateway(new Connexion($base, $blogin, $bpassword));
-            $avgt->delete($idTitre);
-            if($avgt->searchByid($idTitre) != null)
+            $tgt = new TitreGateway(new Connexion($base, $blogin, $bpassword));
+            $avgt = new AvisGateway(new Connexion($base, $blogin, $bpassword));
+            $avgt->deleteAllByIdTitre($idTitre);
+            $tgt->delete($idTitre);
+            if($tgt->searchByid($idTitre) != null)
                 throw new Exception("La suppression du titre ne s'est pas bien terminée.");
         }
         else

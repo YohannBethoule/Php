@@ -54,7 +54,7 @@ class ControllerAdmin extends ControllerUser
 
         catch (Exception $e2)
         {
-            $dVueEreur[] =	"Erreur : ".$e2->getMessage();
+            $dVueEreur=	"Erreur : ".$e2->getMessage();
             require ($rep.$vues['erreur']);
         }
 
@@ -81,6 +81,7 @@ class ControllerAdmin extends ControllerUser
     //nettoyage des données et appel de la méthode de suppression d'un titre de la base de données
     function supprimerTitre() {
         $idTitre=Nettoyer::nettoyer_int($_GET['idTitre']);
+        var_dump($idTitre);
         //appel de la méthode du modele
         ModelAdmin::supprimerTitre($idTitre);
         header("Location:/Php/");

@@ -26,15 +26,11 @@ require_once('\templates\head.php');
     <!--mise en page-->
     <?php
     require_once('\templates\header.php');
-    require_once('\templates\navbar.php');
     require_once('\templates\footer.php');
-    //require_once(dirname(dirname(__FILE__)).'/index.php');
-
     ?>
 
     <span style="text-align: center">
         <?php
-        //var_dump($resSingle);
         if(isset($resSingle)){
             echo "<p> Nom du titre : ".$resSingle['nomTitre']."</p>";
             echo "<p> Durée d'écoute : ".$resSingle['duree']." secondes</p>";
@@ -44,8 +40,8 @@ require_once('\templates\head.php');
             echo "<p> Période de mise en ligne : ".$resSingle['dateDebut']." - ".$resSingle['dateFin']."</p>";
             echo "<p> Nom de l'artise :".$resSingle['artiste']."</p>";
             echo "<p> Date de parution :".$resSingle['parution']."</p>";
+            echo "<p><a href=\"?idTitre=".$resSingle['idTitre']."&action=nouveauCommentaire\">Ajouter un commentaire</a></p>";
             echo "<p><img width='100px' height='100px' src=".$resSingle['couv']."></p>";
-            echo "<a href=\"?idTitre=".$resSingle['idTitre']."&action=nouveauCommentaire\">Ajouter un commentaire</a>";
             if(isset($resSingle['comm'])){
         ?>
         <table width="500px" align="center">
@@ -74,9 +70,9 @@ require_once('\templates\head.php');
                     echo "</tr>";
                 }
             }
-        }
-        else{
-            echo "<h2>Erreur d'appel </h2>";
+            else{
+                    echo "<h2>Erreur d'appel dans la page single.php</h2>";
+                }
         }
         ?>
         </table>

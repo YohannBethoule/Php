@@ -22,16 +22,15 @@ require('\templates\head.php');
 ?>
 
 <!-- /w3layouts-agile -->
-<body class="sticky-header left-side-collapsed">
+<body class="sticky-header left-side-collapsed"  onload="initMap()">
 <section>
 
     <?php require ('\templates\header.php');
-    require('\templates\navbar.php');
     require('\templates\footer.php');
     ?>
 
     <div id="page-wrapper">
-        <div class="inner-content">
+        <div class="inner-content text-center">
             <!-- /error_page -->
             <div class="error-top">
                 <img src="/Php/Vues/images/pic_error.png" alt="" />

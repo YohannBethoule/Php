@@ -14,15 +14,12 @@
     require_once('\templates\head.php');
     ?>
 
-    <body class="sticky-header left-side-collapsed">
+    <body class="sticky-header left-side-collapsed"">
         <section class="center-block text-center margin-top">
 
             <?php
             require_once('\templates\header.php');
-            require_once('\templates\navbar.php');
             require_once('\templates\footer.php');
-            /*require_once(dirname(dirname(__FILE__)).'/index.php');*/
-
             ?>
 
             <form style="align-content: center" method="post" action="?action=ajouterCommentaire">

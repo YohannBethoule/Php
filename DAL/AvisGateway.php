@@ -34,6 +34,13 @@ class avisGateway
         ));
     }
 
+    public function deleteAllByIdTitre($idTitre){
+        $query= 'DELETE FROM avis WHERE idTitre=:idTitre';
+        $this->con->executeQuery($query, array(
+            ':idTitre' => array($idTitre, PDO::PARAM_INT)
+        ));
+    }
+
     public function search($idTitre){
         $query='SELECT * FROM avis WHERE idTitre=:idTitre';
         $this->con->executeQuery($query, array(

@@ -1,10 +1,10 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: yoyot
- * Date: 07/12/2016
- * Time: 19:25
- */
+* Created by PhpStorm.
+* User: yoyot
+* Date: 07/12/2016
+* Time: 19:25
+*/
 
 ?>
 
@@ -22,22 +22,16 @@ require_once('\templates\head.php');
 ?>
 
 <!-- /w3layouts-agile -->
-<body class="sticky-header left-side-collapsed">
+<body class="sticky-header left-side-collapsed"">
 <section>
 
     <?php
     require_once('\templates\header.php');
-    require_once('\templates\navbar.php');
     require_once('\templates\footer.php');
     ?>
 
     <h2 class="sub-header">Nos titres</h2>
     <div class="table-responsive">
-        <?php
-        if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
-            echo "<a href=\"?action=nouveauTitre\">Ajouter un titre</a>";
-        }
-        ?>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -58,6 +52,7 @@ require_once('\templates\head.php');
             <tbody>
             <?php
             if(isset($res)) {
+                //var_dump($res);
                 foreach ($res as $row) {
                     echo "<tr>";
                     echo "<td>" . $row['titre'] . "</td>";

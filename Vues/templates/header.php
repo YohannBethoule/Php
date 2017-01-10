@@ -1,42 +1,39 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: yoyot
- * Date: 07/12/2016
- * Time: 19:14
+ * User: yobethoule
+ * Date: 06/01/17
+ * Time: 12:41
  *
- * En-tête de nos pages
+ * Contient l'en tête de notre site
  */
 
 ?>
-<!-- signup -->
 
-<!-- //signup -->
-
-<!-- main content start-->
-<div class="main-content">
-    <!-- header-starts -->
-    <div class="header-section">
-        <!--notification menu start -->
-        <div class="menu-right">
-            <div class="profile_details">
-                <div class="col-md-4 ">
-                    <div id="loginpop">
-                        <?php
-                            if(!isset($_SESSION['login'])){
-                                echo "<a href=\"Vues/Connection.php\" id=\"loginButton\"><span>Login <i class=\"arrow glyphicon glyphicon-chevron-right\"></i></span></a>";
-                            }
-                            else{
-                                echo "<a href=\"?action=seDeconnecter\" id=\"deconnexionButton\"><span>Déconnexion<i class='arrow glyphicon glyphicon-log-out'></i></span></a>";
-                            }
-                        ?>
-                    </div>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-            <!-------->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/Php/">Muses'Hic</a>
         </div>
-        <div class="clearfix"></div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <form class="navbar-form navbar-right">
+                <?php
+                if(!isset($_SESSION['login'])){
+                    echo "<a style='color: #eea236' href=\"?action=connexion\"><span>Login</span></a>";
+                }
+                else{
+                    echo "<a  style='cursor: default; pointer-events: none ;color: #4cae4c'>".$_SESSION['login']."</a> ";
+                    echo "<a style='color: #eea236' href=\"?action=seDeconnecter\" id=\"deconnexionButton\"><span>Déconnexion</span></a>";
+                }
+                ?>
+                <input type="text" class="form-control" placeholder="Search...">
+            </form>
+        </div>
     </div>
-    <!--notification menu end -->
-    <!-- //header-ends -->
+</nav>

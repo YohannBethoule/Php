@@ -12,8 +12,9 @@ class FrontController
     {
         global $vues;
         $listeAction_Visitor = array('consulterTitres','detailTitre','afficherCommentaires','nouveauCommentaire','ajouterCommentaire');
-        $listeAction_User = array('seConnecter','seDeconnecter');
+        $listeAction_User = array('connexion','seConnecter','seDeconnecter');
         $listeAction_Admin = array('ajouterTitre','afficherTitre','nouveauTitre','supprimerTitre','modifierTitre','supprimerCommentaire');
+
 
         try{
             if(isset($_REQUEST['action'])) {
@@ -22,16 +23,18 @@ class FrontController
             }
             else
                 $action=null;
-
             if(in_array($action,$listeAction_Admin)){
                 if(!ModelAdmin::isAdmin())
-                    new ControllerUser("seConnecter");
+                    new ControllerUser("connexion");
                 else
                     new ControllerAdmin($action);
             }
             else if(in_array($action,$listeAction_User)){
                 if(!ModelUser::isUser() && !ModelAdmin::isAdmin())
-                    new ControllerUser("seConnecter");
+                    if ($action == "seConnecter")
+                        new ControllerUser("seConnecter");
+                    else
+                        new ControllerUser("connexion");
                 else
                     new ControllerUser($action);
             }

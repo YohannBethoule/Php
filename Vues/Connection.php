@@ -1,3 +1,12 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: yoyot
+ * Date: 07/12/2016
+ * Time: 19:25
+ */
+
+?>
 <!DOCTYPE HTML>
 <html>
 
@@ -10,11 +19,9 @@ require_once('\templates\head.php');
         <section>
             <?php
             require_once('\templates\header.php');
-            require_once('\templates\navbar.php');
-            require_once('\templates\footer.php');
-
+            //require_once('\templates\footer.php');
             ?>
-            <div class="connection_form main-content center-block text-center">
+            <div class=" center-block text-center">
                 <?php
                 if(isset($res)) {
                     echo "<p style='color: #ac2925'>$res</p>";
