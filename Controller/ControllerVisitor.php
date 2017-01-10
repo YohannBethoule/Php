@@ -5,6 +5,8 @@
  * User: yoyot
  * Date: 06/12/2016
  * Time: 20:54
+ *
+ * Classe de gestion des actions pouvant être requises par un visiteur
  */
 
 
@@ -17,11 +19,12 @@ class ControllerVisitor
         $dVueErreur = array ();
 
         try {
-
+            //switch des différentes actions pouvant être requises par le visiteur. Dans chaque cas, on appelle la méthode associée à l'action.
             switch ($action) {
                 case NULL:
                     $this->consulterTitres();
                     break;
+
                 case "detailTitre":
                     $this->detailTitre();
                     break;
@@ -59,7 +62,7 @@ class ControllerVisitor
         exit(0);
     }
 
-
+    //methode par défaut, permettant de consulter la liste des titres proposés par le site
     function consulterTitres(){
         global $rep,$vues;
         try{

@@ -8,6 +8,7 @@
  */
 class ModelAdmin
 {
+    //verification du statut d'administrateur de la session
     public static function isAdmin(){
         global $bpassword, $blogin, $base;
         if(isset($_SESSION['login']) && isset ($_SESSION['role'])){
@@ -22,6 +23,7 @@ class ModelAdmin
         return false;
     }
 
+    //méthode de suppression d'un commentaire
     public static function supprimerCommentaire($idAvis)
     {
         global $bpassword, $blogin, $base;

@@ -51,7 +51,7 @@ class ModelVisitor
         $algt = new AlbumGateway($con);
         $avgt = new AvisGateway($con);
         $titres=$tigt->getAll();
-        $couvs=self::couverturesFromTitres($titres);
+        //$couvs=self::couverturesFromTitres($titres);
         $avisF=self::NbAvisFromTitres($titres,"favorable");
         $avisI=self::NbAvisFromTitres($titres,"indifferent");
         $avisD=self::NBAvisFromTitres($titres,"defavorable");
@@ -59,7 +59,7 @@ class ModelVisitor
         foreach ($titres as $row){
             $res[] = array(
                 "titre"=>$row['nomTitre'],
-                "couverture"=>$couvs[$i],
+                "artiste"=>$row['artiste'],
                 "date_debut"=>$row['date_debut'],
                 "date_fin"=>$row['date_fin'],
                 "avisF"=>$avisF[$i],

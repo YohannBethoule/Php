@@ -4,6 +4,7 @@ class Autoload
 {
     private static $_instance = null;
 
+    //constructeur de type Singleton
     public static function charger()
     {
         if(null !== self::$_instance) {
@@ -18,6 +19,7 @@ class Autoload
         }
     }
 
+    //methode de fermeture de l'Autoload
     public static function shutDown()
     {
         if(null !== self::$_instance) {
@@ -30,6 +32,7 @@ class Autoload
         }
     }
 
+    //methode d'auto-chargement des fichiers
     private static function _autoload($class)
     {
         global $rep;

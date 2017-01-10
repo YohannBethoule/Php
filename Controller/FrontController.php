@@ -15,8 +15,6 @@ class FrontController
         $listeAction_User = array('seConnecter','seDeconnecter');
         $listeAction_Admin = array('ajouterTitre','afficherTitre','nouveauTitre','supprimerTitre','modifierTitre','supprimerCommentaire');
 
-       // var_dump($_REQUEST['action']);
-
         try{
             if(isset($_REQUEST['action'])) {
                 $action = $_REQUEST['action'];

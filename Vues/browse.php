@@ -29,55 +29,57 @@ require_once('\templates\head.php');
     require_once('\templates\header.php');
     require_once('\templates\navbar.php');
     require_once('\templates\footer.php');
-    //require_once(dirname(dirname(__FILE__)).'/index.php');
     ?>
 
-
-    <div class="table table-responsive  pricing-table">
-            <?php
-                if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
-                    echo "<a href=\"?action=nouveauTitre\">Ajouter un titre</a>";
-                }
-            ?>
-        <table>
+    <h2 class="sub-header">Nos titres</h2>
+    <div class="table-responsive">
+        <?php
+        if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
+            echo "<a href=\"?action=nouveauTitre\">Ajouter un titre</a>";
+        }
+        ?>
+        <table class="table table-striped">
+            <thead>
             <tr>
-                <th>Nom</th>
-                <th>Couverture</th>
+                <td>Nom</th>
+                <th>Artiste</th>
                 <th>Période de mise en ligne</th>
                 <th>Nb favorables</th>
                 <th>Nb indifférents</th>
                 <th>Nb défavorables</th>
                 <th>+ d'Infos</th>
                 <?php
-                    if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
-                        echo "<th>Gestion titre</th>";
-                    }
+                if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
+                    echo "<th>Gestion titre</th>";
+                }
                 ?>
             </tr>
-
+            </thead>
+            <tbody>
             <?php
-                if(isset($res)){
-                    foreach ($res as $row) {
-                        echo "<tr>";
-                        echo "<th>" . $row['titre'] . "</th>";
-                        echo "<th><img width='100px' height='100px' src=" . $row['couverture'] . "></th>";
-                        echo "<th>" . $row['date_debut'] . "--" . $row['date_fin'] . "</th>";
-                        echo "<th>" . $row['avisF'] . "</th>";
-                        echo "<th>" . $row['avisI'] . "</th>";
-                        echo "<th>" . $row['avisD'] . "</th>";
-                        echo "<th> <a href=\"?idT=" . $row['idTitre'] . "&action=detailTitre\">+</a></th>";
-                        if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
-                            echo "<th><a href=\"?idTitre=".$row['idTitre']."&action=afficherTitre\">Modifier</a>
+            if(isset($res)) {
+                foreach ($res as $row) {
+                    echo "<tr>";
+                    echo "<td>" . $row['titre'] . "</td>";
+                    echo "<td>" . $row['artiste'] . "</td>";
+                    echo "<td>" . $row['date_debut'] . "--" . $row['date_fin'] . "</td>";
+                    echo "<td>" . $row['avisF'] . "</td>";
+                    echo "<td>" . $row['avisI'] . "</td>";
+                    echo "<td>" . $row['avisD'] . "</td>";
+                    echo "<td> <a href=\"?idT=" . $row['idTitre'] . "&action=detailTitre\">+</a></td>";
+                    if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
+                        echo "<th><a href=\"?idTitre=".$row['idTitre']."&action=afficherTitre\">Modifier</a>
                                     <a href=\"?idTitre=".$row['idTitre']."&action=supprimerTitre\">Supprimer</a></th>";
-                        }
-                        echo "</tr>";
                     }
+                    echo "</tr>";
                 }
-                else
-                {
-                    echo "<h2>Erreur d'appel </h2>";
-                }
+            }
+            else
+            {
+                echo "<h2>Erreur d'appel dans la page browse.php</h2>";
+            }
             ?>
+            </tbody>
         </table>
     </div>
 

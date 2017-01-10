@@ -5,6 +5,8 @@
  * User: samuel
  * Date: 11/12/2016
  * Time: 14:19
+ *
+ * Classe de gestion des différentes actions pouvant être requises par un utilisateur authentifié
  */
 class ControllerUser extends ControllerVisitor
 {
@@ -12,9 +14,10 @@ class ControllerUser extends ControllerVisitor
     {
         global $rep,$vues;
         $dVueEreur = array ();
-
         try {
+            //switch des différentes actions pouvant être requises par l'utilisateur. Dans chaque cas, on appelle la méthode associée à l'action.
             switch ($action) {
+                //par défaut, on appelle la méthode consulterTitres()
                 case NULL:
                     $this->consulterTitres();
                     break;
@@ -47,6 +50,7 @@ class ControllerUser extends ControllerVisitor
         exit(0);
     }
 
+    //appel de la méthode de connexion au site
     function seConnecter()
     {
         global $rep,$vues;
@@ -60,6 +64,7 @@ class ControllerUser extends ControllerVisitor
         }
     }
 
+    //methode de déconnexion au site
     function seDeconnecter(){
         session_unset();
         if(isset($_SESSION['login'])){

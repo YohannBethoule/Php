@@ -13,7 +13,7 @@ $rep=__DIR__.'/../';
 
 $base="mysql:host=localhost;dbname=musique";
 $blogin="root";
-$bpassword="root";
+$bpassword="mdp";
 
 
 //Vues

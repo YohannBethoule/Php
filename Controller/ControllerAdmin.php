@@ -5,6 +5,8 @@
  * User: yoyot
  * Date: 06/12/2016
  * Time: 21:37
+ *
+ * Classe de gestion des actions pouvant être requises par un administrateur
  */
 class ControllerAdmin extends ControllerUser
 {
@@ -12,7 +14,9 @@ class ControllerAdmin extends ControllerUser
     {
         global $rep,$vues;
         try{
+            //switch des actions pouvant être requises. Pour chaque cas, on appelle la méthode associée à l'action requise.
             switch($action){
+                //si aucune action particulière n'est requise, on appelle la méthode par défaut, consulterTitres()
                 case null:
                     $this->consulterTitres();
                     break;
@@ -57,8 +61,8 @@ class ControllerAdmin extends ControllerUser
         exit(0);
     }
 
+    //nettoyage des données et appel de la methode permettant l'ajout d'un titre à la base de données
     function ajouterTitre() {
-        global $rep,$vues;
         $nomTitre = Nettoyer::nettoyer_string($_POST['nomTitre']);
         $artiste = Nettoyer::nettoyer_string($_POST['artiste']);
         $nomAlbum = Nettoyer::nettoyer_string($_POST['nomAlbum']);
@@ -74,13 +78,15 @@ class ControllerAdmin extends ControllerUser
         require_once ($rep.$vues['titre']);
     }
 
+    //nettoyage des données et appel de la méthode de suppression d'un titre de la base de données
     function supprimerTitre() {
-        global $rep,$vues;
         $idTitre=Nettoyer::nettoyer_int($_GET['idTitre']);
+        //appel de la méthode du modele
         ModelAdmin::supprimerTitre($idTitre);
         header("Location:/Php/");
     }
 
+    //nettoyage des données et appel de la méthode d'affichage d'un titre
     function afficherTitre(){
         global $rep,$vues;
         $idTitre=Nettoyer::nettoyer_int($_GET['idTitre']);
@@ -88,21 +94,20 @@ class ControllerAdmin extends ControllerUser
         require_once ($rep.$vues['titre']);
     }
 
+    //nettoyage des données et appel de la methode de modification des informations d'un titre
     function modifierTitre(){
-        global $rep,$vues;
-            $idTitre = Nettoyer::nettoyer_int($_POST['idTitre']);
-            $nomTitre = Nettoyer::nettoyer_string($_POST['nomTitre']);
-            $artiste = Nettoyer::nettoyer_string($_POST['artiste']);
-            $nomAlbum = Nettoyer::nettoyer_string($_POST['nomAlbum']);
-            $date_debut = Nettoyer::nettoyer_string($_POST['date_debut']);
-            $date_fin = Nettoyer::nettoyer_string($_POST['date_fin']);
-            $duree = Nettoyer::nettoyer_int($_POST['duree']);
-
-            ModelAdmin::modifierTitre($idTitre,$nomTitre,$artiste,$nomAlbum,$date_debut,$date_fin,$duree);
+        $idTitre = Nettoyer::nettoyer_int($_POST['idTitre']);
+        $nomTitre = Nettoyer::nettoyer_string($_POST['nomTitre']);
+        $artiste = Nettoyer::nettoyer_string($_POST['artiste']);
+        $nomAlbum = Nettoyer::nettoyer_string($_POST['nomAlbum']);
+        $date_debut = Nettoyer::nettoyer_string($_POST['date_debut']);
+        $date_fin = Nettoyer::nettoyer_string($_POST['date_fin']);
+        $duree = Nettoyer::nettoyer_int($_POST['duree']);
+        ModelAdmin::modifierTitre($idTitre,$nomTitre,$artiste,$nomAlbum,$date_debut,$date_fin,$duree);
         header("Location:/Php/");
-
     }
 
+    //nettoyage des données et appel de la methode de suppression d'un commentaire
     function supprimerCommentaire(){
         global $vues;
         $idAvis = $_POST['idAvis'];

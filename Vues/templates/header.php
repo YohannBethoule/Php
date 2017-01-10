@@ -4,6 +4,8 @@
  * User: yoyot
  * Date: 07/12/2016
  * Time: 19:14
+ *
+ * En-tête de nos pages
  */
 
 ?>
@@ -18,26 +20,6 @@
         <!--notification menu start -->
         <div class="menu-right">
             <div class="profile_details">
-                <div class="col-md-4 serch-part">
-                    <div id="sb-search" class="sb-search">
-                        <form method="post">
-                            <input class="sb-search-input" placeholder="Search" type="search" name="search" id="search">
-                            <input class="sb-search-submit" type="submit" value="">
-                            <span class="sb-icon-search"> </span>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-md-4 player">
-                    <div class="audio-player">
-                        <audio id="audio-player"  controls="controls">
-                            <source src="/Php/Vues/media/Blue Browne.ogg" type="audio/ogg"></source>
-                            <source src="/Php/Vues/media/Blue Browne.mp3" type="audio/mpeg"></source>
-                            <source src="/Php/Vues/media/Georgia.ogg" type="audio/ogg"></source>
-                            <source src="/Php/Vues/media/Georgia.mp3" type="audio/mpeg"></source></audio>
-                    </div>
-
-
-                </div>
                 <div class="col-md-4 login-pop">
                     <div id="loginpop">
                         <?php
