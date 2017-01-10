@@ -49,13 +49,13 @@ class ControllerVisitor
         catch (PDOException $e)
         {
             //si erreur BD, pas le cas ici
-            $dVueErreur[] =	"Erreur inattendue!!! ";
+            $dVueErreur[] =	"Erreur BDD :".$e->getMessage();
             require ($rep.$vues['erreur']);
         }
 
         catch (Exception $e2)
 	    {
-            $dVueErreur[] =	"Erreur inattendue!!! ";
+            $dVueErreur[] =	"Erreur : ".$e2->getMessage();
             require ($rep.$vues['erreur']);
         }
 

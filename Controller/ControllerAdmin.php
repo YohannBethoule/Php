@@ -48,13 +48,13 @@ class ControllerAdmin extends ControllerUser
         }catch (PDOException $e)
         {
             //si erreur BD, pas le cas ici
-            $dVueEreur[] =	"Erreur inattendue!!! ";
+            $dVueEreur[] =	"Erreur BDD : ".$e->getMessage();
             require ($rep.$vues['erreur']);
         }
 
         catch (Exception $e2)
         {
-            $dVueEreur[] =	"Erreur inattendue!!! ";
+            $dVueEreur[] =	"Erreur : ".$e2->getMessage();
             require ($rep.$vues['erreur']);
         }
 

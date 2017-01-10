@@ -20,14 +20,13 @@
         <!--notification menu start -->
         <div class="menu-right">
             <div class="profile_details">
-                <div class="col-md-4 login-pop">
+                <div class="col-md-4 ">
                     <div id="loginpop">
                         <?php
                             if(!isset($_SESSION['login'])){
                                 echo "<a href=\"Vues/Connection.php\" id=\"loginButton\"><span>Login <i class=\"arrow glyphicon glyphicon-chevron-right\"></i></span></a>";
                             }
                             else{
-                                echo $_SESSION['login'];
                                 echo "<a href=\"?action=seDeconnecter\" id=\"deconnexionButton\"><span>Déconnexion<i class='arrow glyphicon glyphicon-log-out'></i></span></a>";
                             }
                         ?>

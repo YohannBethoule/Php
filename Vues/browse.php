@@ -22,7 +22,7 @@ require_once('\templates\head.php');
 ?>
 
 <!-- /w3layouts-agile -->
-<body class="sticky-header left-side-collapsed"">
+<body class="sticky-header left-side-collapsed">
 <section>
 
     <?php

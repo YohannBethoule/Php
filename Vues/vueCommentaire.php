@@ -14,7 +14,7 @@
     require_once('\templates\head.php');
     ?>
 
-    <body class="sticky-header left-side-collapsed"">
+    <body class="sticky-header left-side-collapsed">
         <section class="center-block text-center margin-top">
 
             <?php

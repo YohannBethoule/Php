@@ -14,7 +14,7 @@
     ?>
 
 
-    <body class="sticky-header left-side-collapsed"">
+    <body class="sticky-header left-side-collapsed">
         <section>
 
             <?php
