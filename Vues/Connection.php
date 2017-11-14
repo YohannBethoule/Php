@@ -11,15 +11,15 @@
 <html>
 
 <?php
-require_once('\templates\head.php');
+require_once('templates/head.php');
 ?>
 
 <!-- /w3layouts-agile -->
     <body class="sticky-header left-side-collapsed">
         <section>
             <?php
-            require_once('\templates\header.php');
-            //require_once('\templates\footer.php');
+            require_once('templates/header.php');
+            //require_once('templates/footer.php');
             ?>
             <div class=" center-block text-center">
                 <?php

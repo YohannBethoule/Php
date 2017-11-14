@@ -18,7 +18,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <?php
-require_once('\templates\head.php');
+require_once('templates/head.php');
 ?>
 
 <!-- /w3layouts-agile -->
@@ -26,8 +26,8 @@ require_once('\templates\head.php');
 <section>
 
     <?php
-    require_once('\templates\header.php');
-    require_once('\templates\footer.php');
+    require_once('templates/header.php');
+    require_once('templates/footer.php');
     ?>
 
     <h2 class="sub-header">Nos titres</h2>

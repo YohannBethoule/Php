@@ -17,15 +17,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <?php
-require('\templates\head.php');
+require('templates/head.php');
 ?>
 
 <!-- /w3layouts-agile -->
 <body class="sticky-header left-side-collapsed" >
 <section>
 
-    <?php require ('\templates\header.php');
-    require('\templates\footer.php');
+    <?php require ('templates/header.php');
+    require('templates/footer.php');
     ?>
 
         <div class="modal-dialog" role="document">

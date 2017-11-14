@@ -11,15 +11,15 @@
 <!DOCTYPE HTML>
 <html>
     <?php
-    require_once('\templates\head.php');
+    require_once('templates/head.php');
     ?>
 
     <body class="sticky-header left-side-collapsed"">
         <section class="center-block text-center margin-top">
 
             <?php
-            require_once('\templates\header.php');
-            require_once('\templates\footer.php');
+            require_once('templates/header.php');
+            require_once('templates/footer.php');
             ?>
 
             <form style="align-content: center" method="post" action="?action=ajouterCommentaire">

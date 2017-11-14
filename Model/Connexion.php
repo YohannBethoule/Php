@@ -6,7 +6,7 @@
  * Date: 30/11/16
  * Time: 14:11
  */
-class Connexion extends PDO
+class  Connexion extends PDO
 {
     private $stmt;
 

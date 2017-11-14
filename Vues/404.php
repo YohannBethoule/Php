@@ -18,15 +18,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <?php
-require('\templates\head.php');
+require('templates/head.php');
 ?>
 
 <!-- /w3layouts-agile -->
 <body class="sticky-header left-side-collapsed"  onload="initMap()">
 <section>
 
-    <?php require ('\templates\header.php');
-    require('\templates\footer.php');
+    <?php require ('templates/header.php');
+    require('templates/footer.php');
     ?>
 
     <div id="page-wrapper">

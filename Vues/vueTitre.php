@@ -10,7 +10,7 @@
 <!DOCTYPE HTML>
 <html>
     <?php
-    require_once('\templates\head.php');
+    require_once('templates/head.php');
     ?>
 
 
@@ -18,8 +18,8 @@
         <section>
 
             <?php
-                require_once('\templates\header.php');
-                require_once('\templates\footer.php');
+                require_once('templates/header.php');
+                require_once('templates/footer.php');
 
                 if(isset($err)) {
                     echo "<p style='color: #ac2925'>$err</p>";

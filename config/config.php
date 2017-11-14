@@ -11,9 +11,9 @@ $rep=__DIR__.'/../';
 
 //BD
 
-$base="mysql:host=localhost;dbname=musique";
+$base="mysql:host=localhost;dbname=Musique";
 $blogin="root";
-$bpassword="root";
+$bpassword="";
 
 
 //Vues
